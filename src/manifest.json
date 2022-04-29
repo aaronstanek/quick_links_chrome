@@ -1,0 +1,10 @@
+{
+    "name": "Quick Links",
+    "version": "0.1.0",
+    "description": "Fast in-browser go-links implementation",
+    "permissions": [ "webRequest", "webRequestBlocking", "*://go/*" ],
+    "background": {
+        "scripts": [ "background.js" ]
+     },
+    "manifest_version": 2
+}
