@@ -1,26 +1,14 @@
 {
+    "manifest_version": 3,
     "name": "Quick Links",
-    "version": "0.1.13",
+    "version": "0.1.15",
     "description": "Fast in-browser go-links implementation",
     "permissions": [
-        "declarativeNetRequest",
-        "declarativeNetRequestWithHostAccess",
-        "declarativeNetRequestFeedback",
+        "omnibox",
         "*://go/*"
     ],
-    "host_permissions": [
-        "*://google.com/*",
-        "*://microsoft.com/*"
-    ],
-    // "background": {
-    //     "scripts": [ "background.js" ]
-    //  },
-    "declarative_net_request" : {
-        "rule_resources" : [{
-          "id": "ruleset_1",
-          "enabled": true,
-          "path": "rules_1.json"
-        }]
-      },
-    "manifest_version": 3
+    "omnibox": { "keyword" : "go" },
+    "background": {
+        "service_worker": "background.js"
+    }
 }
