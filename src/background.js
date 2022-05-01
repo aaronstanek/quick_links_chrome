@@ -1,17 +1,24 @@
 let linkTable = {
-    "example": {
-        0: ["http://example.com"]
+    "example\x7F0": {
+        "a": ["http://example.com"]
     },
-    "w": {
-        0: ["https://en.wikipedia.org"],
-        1: ["https://en.wikipedia.org/wiki/",""]
+    "w\x7F0": {
+        "a": ["https://en.wikipedia.org"]
     },
-    "w/talk": {
-        1: ["https://en.wikipedia.org/wiki/Talk:",""]
+    "w\x7F1": {
+        "a": ["https://en.wikipedia.org/wiki/","1",""],
+        "1": ["c","%"]
     },
-    "g": {
-        0: ["https://www.google.com"],
-        1: ["https://www.google.com/search?q=",""]
+    "w/talk\x7F1": {
+        "a": ["https://en.wikipedia.org/wiki/Talk:","1",""],
+        "1": ["c","%"]
+    },
+    "g\x7F0": {
+        "a": ["https://www.google.com"]
+    },
+    "g\x7F1": {
+        "a": ["https://www.google.com/search?q=","1",""],
+        "1": ["%"]
     }
 };
 
