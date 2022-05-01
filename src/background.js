@@ -1,10 +1,10 @@
-function repalce(str) {
-    return "page.html";
+function replace(str) {
+    return "http://example.com";
 }
 
-chrome.omnibox.onInputEntered.addListener(
-    (url, disposition) => {
-        url = repalce(url);
-        chrome.tabs.update({url});
-    }
-);
+function omnibox(str, disposition) {
+    let url = replace(str);
+    chrome.tabs.update({url});
+}
+
+chrome.omnibox.onInputEntered.addListener(omnibox);
