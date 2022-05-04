@@ -1,23 +1,41 @@
 <script>
-    let message;
-    function update() {
+    let linkTableLocked = false;
+    let linkTable = "Loading";
+    function updateLinkTable() {
         chrome.storage.local.get(["links"],(result)=>{
             if (chrome.runtime.lastError) {
-                message = "An error occurred while loading data.";
+                linkTable = "An error occurred while loading data.";
             }
             else if (typeof result.links !== "object") {
-                message = "No links to show yet.";
+                linkTable = {};
             }
             else {
-                message = "Data was loaded.";
+                linkTable = result.links;
             }
         });
     }
-    update();
+    updateLinkTable();
+    let messageDisplay = "none";
+    let messageValue = "";
+    let tableDisplay = "none";
+    $: whatToShow(linkTable);
+    function whatToShow(lt) {
+        if (typeof lt === "string") {
+            messageDisplay = "inline";
+            messageValue = lt;
+            tableDisplay = "none";
+        }
+        else {
+            messageDisplay = "none";
+            messageValue = "";
+            tableDisplay = "inline";
+        }
+    }
 </script>
 
 <main>
-    <p>{message}</p>
+    <span style={"display:"+messageDisplay}><p>{messageValue}</p></span>
+    <span style={"display:"+tableDisplay}></span>
 </main>
 
 <style>
