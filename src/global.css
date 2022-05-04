@@ -1,0 +1,11 @@
+@import url("https://fonts.googleapis.com/css?family=Inter");
+:root {
+    --main-font: Inter, Helvetica, Arial, sans-serif;
+    --default-fs: 17px;
+}
+html {
+    font-family: var(--main-font);
+}
+p {
+    font-size: var(--default-fs);
+}
