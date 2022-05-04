@@ -12,6 +12,46 @@ function tabRedirect(url) {
     chrome.tabs.update({url});
 }
 
+function linkTableLookupHandle1(result,sections,sectionConsider) {
+    let urlParts = result.split("\x1F");
+    if (urlParts.length !== 3) {
+        return tabRedirect("error.html?code=1");
+    }
+    urlParts[1] = encodeURIComponent( sections[sectionConsider] );
+    tabRedirect(urlParts.join(""));
+}
+
+function linkTableLookupHandle2(result,sections,sectionConsider,argCount) {
+    let table = result.split("\x1E");
+    if (table.length !== 2) {
+        return tabRedirect("error.html?code=2");
+    }
+    let urlParts = table[0].split("\x1F");
+    if (urlParts.length !== argCount*2+1) {
+        return tabRedirect("error.html?code=3");
+    }
+    let varnames = table[1];
+    if (varnames.length !== argCount) {
+        return tabRedirect("error.html?code=4");
+    }
+    for (let i = 1; i < urlParts.length; i += 2) {
+        let name = urlParts[i];
+        // find the index of name
+        let nameIndex = -1;
+        for (let j = 0; j < varnames.length; ++j) {
+            if (name == varnames[j]) {
+                nameIndex = j;
+                break;
+            }
+        }
+        if (nameIndex < 0) {
+            return tabRedirect("error.html?code=5");
+        }
+        urlParts[i] = sections[sectionConsider + nameIndex];
+    }
+    tabRedirect(urlParts.join(""));
+}
+
 function linkTableLookup(s) {
     let sections = s.split("/");
     let sectionConsider = sections.length;
@@ -32,47 +72,15 @@ function linkTableLookup(s) {
         else if (argCount === 1) {
             // we need to do a single replacement
             // we don't care what the variable name is
-            let urlParts = result.split("\x1F");
-            if (urlParts.length !== 3) {
-                return tabRedirect("error.html?code=1");
-            }
-            urlParts[1] = encodeURIComponent( sections[sectionConsider] );
-            return tabRedirect(urlParts.join(""));
+            return linkTableLookupHandle1(result,sections,sectionConsider);
         }
         else {
             // argCount === many
             // we need to do multiple replacement
-            let table = result.split("\x1E");
-            if (table.length !== 2) {
-                return tabRedirect("error.html?code=2");
-            }
-            let urlParts = table[0].split("\x1F");
-            if (urlParts.length !== argCount*2+1) {
-                return tabRedirect("error.html?code=3");
-            }
-            let varnames = table[1];
-            if (varnames.length !== argCount) {
-                return tabRedirect("error.html?code=4");
-            }
-            for (let i = 1; i < urlParts.length; i += 2) {
-                let name = urlParts[i];
-                // find the index of name
-                let nameIndex = -1;
-                for (let j = 0; j < varnames.length; ++j) {
-                    if (name == varnames[j]) {
-                        nameIndex = j;
-                        break;
-                    }
-                }
-                if (nameIndex < 0) {
-                    return tabRedirect("error.html?code=5");
-                }
-                urlParts[i] = sections[sectionConsider + nameIndex];
-            }
-            return tabRedirect(urlParts.join(""));
+            return linkTableLookupHandle2(result,sections,sectionConsider,argCount);
         }
     }
-    return tabRedirect( "nomatch.html?link=" + encodeURIComponent(s) );
+    tabRedirect( "nomatch.html?link=" + encodeURIComponent(s) );
 }
 
 function omnibox(str, disposition) {
