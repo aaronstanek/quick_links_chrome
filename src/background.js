@@ -8,6 +8,10 @@ let linkTable = {
     "g\x1F2": "https://www.google.com/search?q=\x1F5\x1F+site%3A\x1F2\x1F\x1E25"
 };
 
+function tabRedirect(url) {
+    chrome.tabs.update({url});
+}
+
 function linkTableLookup(s) {
     let sections = s.split("/");
     let sectionConsider = sections.length;
@@ -23,32 +27,32 @@ function linkTableLookup(s) {
         // we have different formats for 0,1,many arguments
         if (argCount === 0) {
             // the result is the url that we should go to
-            return result;
+            return tabRedirect(result);
         }
         else if (argCount === 1) {
             // we need to do a single replacement
             // we don't care what the variable name is
             let urlParts = result.split("\x1F");
             if (urlParts.length !== 3) {
-                return "error.html?code=1";
+                return tabRedirect("error.html?code=1");
             }
             urlParts[1] = encodeURIComponent( sections[sectionConsider] );
-            return urlParts.join("");
+            return tabRedirect(urlParts.join(""));
         }
         else {
             // argCount === many
             // we need to do multiple replacement
             let table = result.split("\x1E");
             if (table.length !== 2) {
-                return "error.html?code=2";
+                return tabRedirect("error.html?code=2");
             }
             let urlParts = table[0].split("\x1F");
             if (urlParts.length !== argCount*2+1) {
-                return "error.html?code=3";
+                return tabRedirect("error.html?code=3");
             }
             let varnames = table[1];
             if (varnames.length !== argCount) {
-                return "error.html?code=4";
+                return tabRedirect("error.html?code=4");
             }
             for (let i = 1; i < urlParts.length; i += 2) {
                 let name = urlParts[i];
@@ -61,19 +65,18 @@ function linkTableLookup(s) {
                     }
                 }
                 if (nameIndex < 0) {
-                    return "error.html?code=5";
+                    return tabRedirect("error.html?code=5");
                 }
                 urlParts[i] = sections[sectionConsider + nameIndex];
             }
-            return urlParts.join("");
+            return tabRedirect(urlParts.join(""));
         }
     }
-    return "nomatch.html?link=" + encodeURIComponent(s);
+    return tabRedirect( "nomatch.html?link=" + encodeURIComponent(s) );
 }
 
 function omnibox(str, disposition) {
-    let url = linkTableLookup(str);
-    chrome.tabs.update({url});
+    linkTableLookup(str);
 }
 
 chrome.omnibox.onInputEntered.addListener(omnibox);
