@@ -12,34 +12,63 @@ function linkTableLookup(s) {
     let sections = s.split("/");
     let sectionConsider = sections.length;
     while (sectionConsider > 0) {
-        let test = sections.slice(0,sectionConsider).join("/");
-        let resultSet = linkTable[test];
-        if (typeof resultSet === "undefined") {
+        let argCount = sections.length - sectionConsider;
+        let test = sections.slice(0,sectionConsider).join("/") + "\x1F" + argCount.toString();
+        let result = linkTable[test];
+        if (typeof result !== "string") {
             --sectionConsider;
             continue;
         }
         // we found a match
-        // make sure that this takes the same number of arguments
-        // as what we are providing
-        let result = resultSet[sections.length - sectionConsider];
-        if (typeof result === "undefined") {
-            --sectionConsider;
-            continue;
+        // we have different formats for 0,1,many arguments
+        if (argCount === 0) {
+            // the result is the url that we should go to
+            return result;
         }
-        // we have an exact match
-        // return this
-        let remainder = sections.slice(sectionConsider,sections.length);
-        remainder = remainder.map(encodeURIComponent);
-        let output = [];
-        for (let i = 0; i < remainder.length; ++i) {
-            output.push(result[i]);
-            output.push(remainder[i]);
+        else if (argCount === 1) {
+            // we need to do a single replacement
+            // we don't care what the variable name is
+            let urlParts = result.split("\x1F");
+            if (urlParts.length !== 3) {
+                return "error.html?code=1";
+            }
+            urlParts[1] = encodeURIComponent( sections[sectionConsider] );
+            return urlParts.join("");
         }
-        output.push(result[result.length-1]);
-        return output.join("");
+        else {
+            // argCount === many
+            // we need to do multiple replacement
+            let table = result.split("\x1E");
+            if (table.length !== 2) {
+                return "error.html?code=2";
+            }
+            let urlParts = table[0].split("\x1F");
+            if (urlParts.length !== argCount*2+1) {
+                return "error.html?code=3";
+            }
+            let varnames = table[1];
+            if (varnames.length !== argCount) {
+                return "error.html?code=4";
+            }
+            for (let i = 1; i < urlParts.length; i += 2) {
+                let name = urlParts[i];
+                // find the index of name
+                let nameIndex = -1;
+                for (let j = 0; j < varnames.length; ++j) {
+                    if (name == varnames[j]) {
+                        nameIndex = j;
+                        break;
+                    }
+                }
+                if (nameIndex < 0) {
+                    return "error.html?code=5";
+                }
+                urlParts[i] = sections[sectionConsider + nameIndex];
+            }
+            return urlParts.join("");
+        }
     }
-    // we did not find a match
-    return "nomatch.html";
+    return "nomatch.html?link=" + encodeURIComponent(s);
 }
 
 function omnibox(str, disposition) {
