@@ -4,7 +4,9 @@
     "version": "0.1.26",
     "description": "Fast in-browser go-links implementation",
     "permissions": [
-        "omnibox"
+        "omnibox",
+        "storage",
+        "unlimitedStorage"
     ],
     "omnibox": { "keyword" : "go" },
     "background": {
