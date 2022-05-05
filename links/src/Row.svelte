@@ -51,6 +51,7 @@
 
 <div class="row">
     <p class="url row left"><RedPercent text={show[0]}></RedPercent></p>
+    <p class="spacer"></p>
     <p class="url row right"><RedPercent text={show[1]}></RedPercent></p>
 </div>
 
@@ -60,6 +61,9 @@
     }
     .left {
         flex: 1;
+    }
+    .spacer {
+        flex: 0.1;
     }
     .right {
         flex: 3;
