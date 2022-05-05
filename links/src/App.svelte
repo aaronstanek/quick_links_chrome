@@ -1,4 +1,5 @@
 <script>
+    import Table from "./Table.svelte";
     let linkTableLocked = false;
     let linkTable = "Loading";
     function updateLinkTable() {
@@ -35,7 +36,7 @@
 
 <main>
     <span style={"display:"+messageDisplay}><p>{messageValue}</p></span>
-    <span style={"display:"+tableDisplay}></span>
+    <span style={"display:"+tableDisplay}><Table linkTable={linkTable}></Table></span>
 </main>
 
 <style>
