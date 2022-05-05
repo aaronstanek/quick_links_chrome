@@ -10,7 +10,7 @@
         let output = [];
         for (let i = 0; i < keys.length; ++i) {
             let key = keys[i];
-            output.push([key,linkTable[key]]);
+            output.push([key,linkTable[key],i]);
         }
         return output;
     }
