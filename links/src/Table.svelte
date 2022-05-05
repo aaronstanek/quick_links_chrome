@@ -1,4 +1,5 @@
 <script>
+    import Row from "./Row.svelte";
     export let linkTable;
     let rows = [];
     function createRows(table) {
@@ -18,7 +19,7 @@
 
 <div class="table">
     {#each rows as row}
-        <p>{JSON.stringify(row)}</p>
+        <Row content={row}></Row>
     {/each}
 </div>
 
