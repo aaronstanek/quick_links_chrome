@@ -49,12 +49,18 @@
 </script>
 
 <div class="row">
-    <p class="url">{show[0]}</p>
-    <p class="url">{show[1]}</p>
+    <p class="url row left">{show[0]}</p>
+    <p class="url row right">{show[1]}</p>
 </div>
 
 <style>
     .row {
         display: flex;
+    }
+    .left {
+        flex: 1;
+    }
+    .right {
+        flex: 2;
     }
 </style>

@@ -27,5 +27,8 @@
     .table {
         display: flex;
         flex-direction: column;
+        width: 61.8%;
+        margin-left: auto;
+        margin-right: auto;
     }
 </style>
