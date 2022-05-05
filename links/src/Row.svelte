@@ -21,12 +21,12 @@
         let rightSplit = c[1].split("\x1E");
         let right = rightSplit[0].split("\x1F");
         for (let i = 1; i < right.length; i += 2) {
-            right[i] = "/X%" + right[i];
+            right[i] = "/%X" + right[i];
         }
         let varnumbers = rightSplit[1];
         let left = [ c[0].split("\x1F")[0] ];
         for (let i = 0; i < varnumbers.length; ++i) {
-            left.push("/X%" + varnumbers[i]);
+            left.push("/%X" + varnumbers[i]);
         }
         return [
             left.join(""),
