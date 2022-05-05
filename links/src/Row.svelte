@@ -50,14 +50,21 @@
 </script>
 
 <div class="row">
-    <p class="url row left"><RedPercent text={show[0]}></RedPercent></p>
+    <p class="url left"><RedPercent text={show[0]}></RedPercent></p>
     <p class="spacer"></p>
-    <p class="url row right"><RedPercent text={show[1]}></RedPercent></p>
+    <p class="url right"><RedPercent text={show[1]}></RedPercent></p>
 </div>
 
 <style>
     .row {
         display: flex;
+        border-top: 1px;
+        border-left: 0;
+        border-right: 0;
+        border-bottom: 0;
+        border-style: dashed;
+        border-color: gray;
+        box-sizing: border-box;
     }
     .left {
         flex: 1;
