@@ -61,6 +61,6 @@
         flex: 1;
     }
     .right {
-        flex: 2;
+        flex: 3;
     }
 </style>
