@@ -47,9 +47,19 @@
         }
     }
     $: show = createShow(content);
+    let rowStyle = "row";
+    function updateRowStyle(c) {
+        if (c[2] === 0) {
+            return "row";
+        }
+        else {
+            return "row rowdash";
+        }
+    }
+    $: rowStyle = updateRowStyle(content);
 </script>
 
-<div class="row">
+<div class={rowStyle}>
     <p class="url left"><RedPercent text={show[0]}></RedPercent></p>
     <p class="spacer"></p>
     <p class="url right"><RedPercent text={show[1]}></RedPercent></p>
@@ -58,13 +68,15 @@
 <style>
     .row {
         display: flex;
+        box-sizing: border-box;
+    }
+    .rowdash {
         border-top: 1px;
         border-left: 0;
         border-right: 0;
         border-bottom: 0;
         border-style: dashed;
         border-color: gray;
-        box-sizing: border-box;
     }
     .left {
         flex: 1;
