@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Inter");
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+Mono");
 :root {
     --main-font: Inter, Helvetica, Arial, sans-serif;
+    --code-font: "Noto Sans Mono", "Lucida Console", "Courier New", monospace;
     --default-fs: 17px;
 }
 html {
@@ -8,4 +10,7 @@ html {
 }
 p {
     font-size: var(--default-fs);
+}
+.url {
+    font-family: var(--code-font);
 }
