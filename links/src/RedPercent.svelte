@@ -23,7 +23,7 @@
     }
     function callUpdateSpan() {
         if (typeof elem === "undefined") {
-            setInterval(callUpdateSpan,10);
+            setTimeout(callUpdateSpan,10);
         }
         else {
             updadePending = false;
