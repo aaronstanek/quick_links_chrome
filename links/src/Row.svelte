@@ -1,4 +1,5 @@
 <script>
+    import RedPercent from "./RedPercent.svelte";
     export let content;
     let show = ["",""];
     function createShow0(c) {
@@ -49,8 +50,8 @@
 </script>
 
 <div class="row">
-    <p class="url row left">{show[0]}</p>
-    <p class="url row right">{show[1]}</p>
+    <p class="url row left"><RedPercent text={show[0]}></RedPercent></p>
+    <p class="url row right"><RedPercent text={show[1]}></RedPercent></p>
 </div>
 
 <style>
