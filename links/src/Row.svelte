@@ -49,8 +49,8 @@
 </script>
 
 <div class="row">
-    <p>{show[0]}</p>
-    <p>{show[1]}</p>
+    <p class="url">{show[0]}</p>
+    <p class="url">{show[1]}</p>
 </div>
 
 <style>
