@@ -63,6 +63,8 @@
     <p class="url left"><RedPercent text={show[0]}></RedPercent></p>
     <p class="spacer"></p>
     <p class="url right"><RedPercent text={show[1]}></RedPercent></p>
+    <p class="spacer"></p>
+    <img class="trash" src="trash.svg" alt="trash icon">
 </div>
 
 <style>
@@ -86,5 +88,12 @@
     }
     .right {
         flex: 3;
+    }
+    .trash {
+        flex: 0.2;
+        height: 40px;
+        display: block;
+        margin-top: auto;
+        margin-bottom: auto;
     }
 </style>
