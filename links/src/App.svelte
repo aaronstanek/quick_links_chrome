@@ -34,12 +34,18 @@
     }
     function trashClicked(key) {
         let show = [key.split("\x1F")[0]];
+        if (typeof linkTable[key] === "undefined") {
+            return;
+        }
         let right = linkTable[key].split("\x1E")[0].split("\x1F");
         for (let i = 1; i < right.length; i += 2) {
             show.push("/%X");
             show.push(right[i]);
         }
-        alert("Trash was clicked with key: "+show.join(""));
+        if (confirm("Delete link? : "+show.join(""))) {
+            delete linkTable[key];
+            linkTable = linkTable;
+        }
     }
 </script>
 
