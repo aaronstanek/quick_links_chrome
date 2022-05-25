@@ -1,6 +1,7 @@
 <script>
     import RedPercent from "./RedPercent.svelte";
     export let content;
+    export let trash;
     let show = ["",""];
     function createShow0(c) {
         return [
@@ -57,6 +58,9 @@
         }
     }
     $: rowStyle = updateRowStyle(content);
+    function processClick() {
+        trash(content[0]);
+    }
 </script>
 
 <div class={rowStyle}>
@@ -64,7 +68,7 @@
     <p class="spacer"></p>
     <p class="url right"><RedPercent text={show[1]}></RedPercent></p>
     <p class="spacer"></p>
-    <img class="trash" src="trash.svg" alt="trash icon">
+    <img class="trash" src="trash.svg" alt="trash icon" on:click={processClick}>
 </div>
 
 <style>

@@ -1,6 +1,7 @@
 <script>
     import Row from "./Row.svelte";
     export let linkTable;
+    export let trash;
     let rows = [];
     function createRows(table) {
         if (typeof table !== "object") {
@@ -19,7 +20,7 @@
 
 <div class="table">
     {#each rows as row}
-        <Row content={row}></Row>
+        <Row content={row} trash={trash}></Row>
     {/each}
 </div>
 

@@ -32,11 +32,20 @@
             tableDisplay = "inline";
         }
     }
+    function trashClicked(key) {
+        let show = [key.split("\x1F")[0]];
+        let right = linkTable[key].split("\x1E")[0].split("\x1F");
+        for (let i = 1; i < right.length; i += 2) {
+            show.push("/%X");
+            show.push(right[i]);
+        }
+        alert("Trash was clicked with key: "+show.join(""));
+    }
 </script>
 
 <main>
     <span style={"display:"+messageDisplay}><p>{messageValue}</p></span>
-    <span style={"display:"+tableDisplay}><Table linkTable={linkTable}></Table></span>
+    <span style={"display:"+tableDisplay}><Table linkTable={linkTable} trash={trashClicked}></Table></span>
 </main>
 
 <style>
