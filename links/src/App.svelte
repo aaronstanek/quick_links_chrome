@@ -45,6 +45,7 @@
         if (confirm("Delete link? : "+show.join(""))) {
             delete linkTable[key];
             linkTable = linkTable;
+            chrome.storage.local.set({links:linkTable});
         }
     }
 </script>
