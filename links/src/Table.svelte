@@ -1,5 +1,6 @@
 <script>
     import Row from "./Row.svelte";
+    import Input from "./Input.svelte";
     export let linkTable;
     export let trash;
     let rows = [];
@@ -19,6 +20,7 @@
 </script>
 
 <div class="table">
+    <Input></Input>
     {#each rows as row}
         <Row content={row} trash={trash}></Row>
     {/each}

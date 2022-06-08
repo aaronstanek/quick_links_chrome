@@ -11,6 +11,10 @@ html {
 p {
     font-size: var(--default-fs);
 }
+input[type="text"] {
+    font-family: var(--code-font);
+    font-size: var(--default-fs);
+}
 .url {
     font-family: var(--code-font);
 }

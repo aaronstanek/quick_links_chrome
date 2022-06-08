@@ -85,16 +85,16 @@
         border-color: gray;
     }
     .left {
-        flex: 1;
+        flex: 10;
     }
     .spacer {
-        flex: 0.1;
+        flex: 1;
     }
     .right {
-        flex: 3;
+        flex: 30;
     }
     .trash {
-        flex: 0.2;
+        flex: 2;
         height: 40px;
         display: block;
         margin-top: auto;
