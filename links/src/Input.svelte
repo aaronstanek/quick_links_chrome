@@ -1,18 +1,24 @@
 <script>
+    export let createHandler
+    let urltext;
+    let quicktext;
+    function create() {
+        createHandler(urltext.value,quicktext.value);
+    }
 </script>
 
 <div class="row rowtop">
     <p class="lefttext">URL:</p>
     <p class="spacer"></p>
-    <input class="in urltext" type="text" />
+    <input class="in urltext" type="text" bind:this={urltext} />
 </div>
 
 <div class="row rowbottom">
     <p class="lefttext">Quick Link:</p>
     <p class="spacer"></p>
-    <input class="in quicktext" type="text" />
+    <input class="in quicktext" type="text" bind:this={quicktext} />
     <p class="spacer"></p>
-    <p class="create">CREATE</p>
+    <p class="create" on:click={create}>CREATE</p>
 </div>
 
 <style>
@@ -47,5 +53,6 @@
         border-radius: 15px;
         text-align: center;
         background-color: #4dff4d;
+        cursor: pointer;
     }
 </style>

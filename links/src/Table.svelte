@@ -3,6 +3,7 @@
     import Input from "./Input.svelte";
     export let linkTable;
     export let trash;
+    export let create;
     let rows = [];
     function createRows(table) {
         if (typeof table !== "object") {
@@ -20,7 +21,7 @@
 </script>
 
 <div class="table">
-    <Input></Input>
+    <Input createHandler={create}></Input>
     {#each rows as row}
         <Row content={row} trash={trash}></Row>
     {/each}

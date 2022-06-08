@@ -48,11 +48,15 @@
             chrome.storage.local.set({links:linkTable});
         }
     }
+    function createClicked(urltext,quicktext) {
+        alert("url:"+urltext);
+        alert("quick:"+quicktext);
+    }
 </script>
 
 <main>
     <span style={"display:"+messageDisplay}><p>{messageValue}</p></span>
-    <span style={"display:"+tableDisplay}><Table linkTable={linkTable} trash={trashClicked}></Table></span>
+    <span style={"display:"+tableDisplay}><Table linkTable={linkTable} trash={trashClicked} create={createClicked}></Table></span>
 </main>
 
 <style>

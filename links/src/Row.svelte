@@ -99,5 +99,6 @@
         display: block;
         margin-top: auto;
         margin-bottom: auto;
+        cursor: pointer;
     }
 </style>
