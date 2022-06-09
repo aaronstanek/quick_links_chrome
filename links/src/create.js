@@ -94,6 +94,39 @@ function handleQuick(quicktext) {
     // all validated
     // all variables have been recorded
     output.valid = true;
-    output.link = sections.slice(0,sections.length-output.variables.length).join("/");
+    output.link = sections.slice(0,sections.length-output.variables.length).join("/") + "\x1F" + output.variables.length;
     return output;
+}
+
+function buildLinkPair(urlResult,quickResult) {
+    // assumes both are respective result object
+    // which are both valid
+    // we need to ensure that each variable in the quick result
+    // appears in the url result
+    // and vice versa
+    if (urlResult.variables.length !== quickResult.variables.length) {
+        return {"valid":false};
+    }
+    for (let i = 0; i < quickResult.variables.length; ++i) {
+        if (typeof urlResult.variables[quickResult.variables[i]] === "undefined") {
+            return {"valid":false};
+        }
+    }
+    // all good
+    // need to complete url if it has 2 or more variables
+    if (quickResult.variables.length > 1) {
+        return {
+            "valid": true,
+            "url": urlResult.url + "\x1E" + quickResult.variables.join(""),
+            "quick": quickResult.link
+        }
+    }
+    else {
+        // we can return now
+        return {
+            "valid": true,
+            "url": urlResult.url,
+            "quick": quickResult.link
+        };
+    }
 }
