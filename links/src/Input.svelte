@@ -1,4 +1,5 @@
 <script>
+    'use strict';
     export let createHandler
     let urltext;
     let quicktext;

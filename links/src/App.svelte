@@ -1,4 +1,5 @@
 <script>
+    'use strict';
     import Table from "./Table.svelte";
     let linkTableLocked = false;
     let linkTable = "Loading";

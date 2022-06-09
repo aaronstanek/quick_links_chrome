@@ -1,4 +1,5 @@
 <script>
+    'use strict';
     import Row from "./Row.svelte";
     import Input from "./Input.svelte";
     export let linkTable;

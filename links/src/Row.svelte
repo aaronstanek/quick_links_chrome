@@ -1,4 +1,5 @@
 <script>
+    'use strict';
     import RedPercent from "./RedPercent.svelte";
     export let content;
     export let trash;

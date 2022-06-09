@@ -1,4 +1,5 @@
 <script>
+    'use strict';
     export let text;
     let elem;
     let updadePending = false;

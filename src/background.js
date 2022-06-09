@@ -1,3 +1,5 @@
+'use strict';
+
 chrome.storage.local.set({links: {
         "example\x1F0": "http://example.com",
         "w\x1F0": "https://en.wikipedia.org",

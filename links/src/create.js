@@ -1,3 +1,5 @@
+'use strict';
+
 class handleURLresult {
     constructor() {
         this.valid = false;
