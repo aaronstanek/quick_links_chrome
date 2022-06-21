@@ -10,3 +10,9 @@ cp nomatch/public/index.html src/nomatch
 cp nomatch/public/build/bundle.css src/nomatch/build
 cp nomatch/public/build/bundle.js src/nomatch/build
 cp nomatch/public/build/bundle.js.map src/nomatch/build
+
+mkdir -p src/error/build
+cp error/public/index.html src/error
+cp error/public/build/bundle.css src/error/build
+cp error/public/build/bundle.js src/error/build
+cp error/public/build/bundle.js.map src/error/build

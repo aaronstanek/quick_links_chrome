@@ -7,7 +7,7 @@ function tabRedirect(url) {
 function linkTableLookupHandle1(result, sections, sectionConsider) {
     let urlParts = result.split("\x1F");
     if (urlParts.length !== 3) {
-        return tabRedirect("error.html?code=1");
+        return tabRedirect("error/index.html?code=1");
     }
     urlParts[1] = encodeURIComponent( sections[sectionConsider] );
     tabRedirect(urlParts.join(""));
@@ -16,15 +16,15 @@ function linkTableLookupHandle1(result, sections, sectionConsider) {
 function linkTableLookupHandle2(result, sections, sectionConsider, argCount) {
     let table = result.split("\x1E");
     if (table.length !== 2) {
-        return tabRedirect("error.html?code=2");
+        return tabRedirect("error/index.html?code=2");
     }
     let urlParts = table[0].split("\x1F");
     if (urlParts.length !== argCount*2+1) {
-        return tabRedirect("error.html?code=3");
+        return tabRedirect("error/index.html?code=3");
     }
     let varnames = table[1];
     if (varnames.length !== argCount) {
-        return tabRedirect("error.html?code=4");
+        return tabRedirect("error/index.html?code=4");
     }
     for (let i = 1; i < urlParts.length; i += 2) {
         let name = urlParts[i];
@@ -37,7 +37,7 @@ function linkTableLookupHandle2(result, sections, sectionConsider, argCount) {
             }
         }
         if (nameIndex < 0) {
-            return tabRedirect("error.html?code=5");
+            return tabRedirect("error/index.html?code=5");
         }
         urlParts[i] = sections[sectionConsider + nameIndex];
     }
@@ -50,7 +50,7 @@ function linkTableLookup(linkTable,s) {
     }
     let sections = s.split("/");
     if (sections.length > 16) {
-        return tabRedirect("error.html?code=8");
+        return tabRedirect("error/index.html?code=8");
     }
     let sectionConsider = sections.length;
     while (sectionConsider > 0) {
@@ -84,7 +84,7 @@ function linkTableLookup(linkTable,s) {
 function omnibox(str, disposition) {
     chrome.storage.local.get(["links"],(result)=>{
         if (chrome.runtime.lastError) {
-            tabRedirect("error.html?code=6");
+            tabRedirect("error/index.html?code=6");
         }
         else if (typeof result.links !== "object") {
             linkTableLookup({},str);
