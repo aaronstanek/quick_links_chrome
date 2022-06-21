@@ -1,6 +1,7 @@
 <script>
     'use strict';
     import Table from "./Table.svelte";
+    import {handleURL,handleQuick,buildLinkPair} from "./create.js";
     let linkTableLocked = false;
     let linkTable = "Loading";
     function updateLinkTable() {
@@ -50,8 +51,24 @@
         }
     }
     function createClicked(urltext,quicktext) {
-        alert("url:"+urltext);
-        alert("quick:"+quicktext);
+        let urlResult = handleURL(urltext);
+        if (!urlResult.valid) {
+            alert("url is not properly formatted")
+            return;
+        }
+        let quickResult = handleQuick(quicktext);
+        if (!quickResult.valid) {
+            alert("quick link is not properly formatted");
+            return;
+        }
+        let totalResult = buildLinkPair(urlResult,quickResult);
+        if (!totalResult.valid) {
+            alert("variables in url and quick link do not match");
+            return;
+        }
+        linkTable[totalResult.quick] = totalResult.url;
+        linkTable = linkTable;
+        chrome.storage.local.set({links:linkTable});
     }
 </script>
 

@@ -8,7 +8,7 @@ class handleURLresult {
     }
 };
 
-function handleURL(urltext) {
+export function handleURL(urltext) {
     // check the format
     let output = new handleURLresult();
     if (urltext.slice(0,7) !== "http://" && urltext.slice(0,8) !== "https://") {
@@ -52,7 +52,7 @@ class handleQuickresult {
     }
 }
 
-function handleQuick(quicktext) {
+export function handleQuick(quicktext) {
     // check the format
     let output = new handleQuickresult();
     let sections = quicktext.split("/");
@@ -62,7 +62,7 @@ function handleQuick(quicktext) {
             return output;
         }
         sections[i] = sections[i].split("%x").join("%X");
-        if (sections[i].split("%x").length > 1) {
+        if (sections[i].split("%X").length > 1) {
             // it contains %X
             if (sections[i].length !== 3) {
                 return output;
@@ -98,16 +98,21 @@ function handleQuick(quicktext) {
     return output;
 }
 
-function buildLinkPair(urlResult,quickResult) {
+export function buildLinkPair(urlResult,quickResult) {
     // assumes both are respective result object
     // which are both valid
     // we need to ensure that each variable in the quick result
     // appears in the url result
     // and vice versa
-    if (urlResult.variables.length !== quickResult.variables.length) {
+    console.log(urlResult.variables);
+    console.log(quickResult.variables);
+    console.log(Object.keys(urlResult.variables).length);
+    console.log(quickResult.variables.length);
+    if (Object.keys(urlResult.variables).length !== quickResult.variables.length) {
         return {"valid":false};
     }
     for (let i = 0; i < quickResult.variables.length; ++i) {
+        console.log(typeof urlResult.variables[quickResult.variables[i]]);
         if (typeof urlResult.variables[quickResult.variables[i]] === "undefined") {
             return {"valid":false};
         }
