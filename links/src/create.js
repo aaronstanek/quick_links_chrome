@@ -104,15 +104,10 @@ export function buildLinkPair(urlResult,quickResult) {
     // we need to ensure that each variable in the quick result
     // appears in the url result
     // and vice versa
-    console.log(urlResult.variables);
-    console.log(quickResult.variables);
-    console.log(Object.keys(urlResult.variables).length);
-    console.log(quickResult.variables.length);
     if (Object.keys(urlResult.variables).length !== quickResult.variables.length) {
         return {"valid":false};
     }
     for (let i = 0; i < quickResult.variables.length; ++i) {
-        console.log(typeof urlResult.variables[quickResult.variables[i]]);
         if (typeof urlResult.variables[quickResult.variables[i]] === "undefined") {
             return {"valid":false};
         }
