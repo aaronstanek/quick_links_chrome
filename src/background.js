@@ -85,7 +85,7 @@ function linkTableLookup(linkTable,s) {
             return linkTableLookupHandle2(result,sections,sectionConsider,argCount);
         }
     }
-    tabRedirect( "nomatch.html?link=" + encodeURIComponent(s) );
+    tabRedirect( "nomatch/index.html?link=" + encodeURIComponent(s) );
 }
 
 function omnibox(str, disposition) {
