@@ -55,6 +55,9 @@ function linkTableLookupHandle2(result, sections, sectionConsider, argCount) {
 }
 
 function linkTableLookup(linkTable,s) {
+    if (s === "links") {
+        return tabRedirect("links/index.html");
+    }
     let sections = s.split("/");
     if (sections.length > 16) {
         return tabRedirect("error.html?code=8");
