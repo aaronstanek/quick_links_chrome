@@ -1,8 +1,16 @@
 <script>
     'use strict';
+    import { onMount } from 'svelte';
     export let createHandler
     let urltext;
     let quicktext;
+	onMount(async () => {
+		let params = new URLSearchParams(window.location.search);
+        let queryCreate = params.get("create");
+        if (typeof queryCreate === "string") {
+            quicktext.value = queryCreate;
+        }
+	});
     function create() {
         createHandler(urltext.value,quicktext.value);
     }
