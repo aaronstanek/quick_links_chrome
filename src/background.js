@@ -1,15 +1,5 @@
 'use strict';
 
-chrome.storage.local.set({links: {
-        "example\x1F0": "http://example.com",
-        "w\x1F0": "https://en.wikipedia.org",
-        "w\x1F1": "https://en.wikipedia.org/wiki/\x1F1\x1F",
-        "w/talk\x1F1": "https://en.wikipedia.org/wiki/Talk:\x1F1\x1F",
-        "g\x1F0": "https://www.google.com",
-        "g\x1F1": "https://www.google.com/search?q=\x1F1\x1F",
-        "g\x1F2": "https://www.google.com/search?q=\x1F5\x1F+site%3A\x1F2\x1F\x1E25"
-    }}, ()=>{});
-
 function tabRedirect(url) {
     chrome.tabs.update({url});
 }
@@ -97,7 +87,7 @@ function omnibox(str, disposition) {
             tabRedirect("error.html?code=6");
         }
         else if (typeof result.links !== "object") {
-            tabRedirect("error.html?code=7");
+            linkTableLookup({},str);
         }
         else {
             linkTableLookup(result.links,str);
