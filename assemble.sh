@@ -16,3 +16,9 @@ cp error/public/index.html src/error
 cp error/public/build/bundle.css src/error/build
 cp error/public/build/bundle.js src/error/build
 cp error/public/build/bundle.js.map src/error/build
+
+mkdir -p src/export/build
+cp export/public/index.html src/export
+cp export/public/build/bundle.css src/export/build
+cp export/public/build/bundle.js src/export/build
+cp export/public/build/bundle.js.map src/export/build
