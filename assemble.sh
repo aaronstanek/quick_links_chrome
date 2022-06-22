@@ -22,3 +22,9 @@ cp export/public/index.html src/export
 cp export/public/build/bundle.css src/export/build
 cp export/public/build/bundle.js src/export/build
 cp export/public/build/bundle.js.map src/export/build
+
+mkdir -p src/import/build
+cp import/public/index.html src/import
+cp import/public/build/bundle.css src/import/build
+cp import/public/build/bundle.js src/import/build
+cp import/public/build/bundle.js.map src/import/build
