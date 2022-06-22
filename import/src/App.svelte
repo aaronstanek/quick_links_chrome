@@ -2,7 +2,16 @@
     'use strict';
     let importBar;
     function doImport() {
-
+        let linkTable;
+        try {
+            linkTable = JSON.parse(importBar.value);
+        }
+        catch (e) {
+            alert("Unable to parse JSON");
+            return;
+        }
+        chrome.storage.local.set({links:linkTable});
+        window.location.href = "../links/index.html";
     }
 </script>
 
