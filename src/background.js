@@ -81,18 +81,42 @@ function linkTableLookup(linkTable,s) {
     tabRedirect( "nomatch/index.html?link=" + encodeURIComponent(s) );
 }
 
-function omnibox(str, disposition) {
-    chrome.storage.local.get(["links"],(result)=>{
-        if (chrome.runtime.lastError) {
-            tabRedirect("error/index.html?code=6");
-        }
-        else if (typeof result.links !== "object") {
-            linkTableLookup({},str);
-        }
-        else {
-            linkTableLookup(result.links,str);
-        }
-    });
+let linkTableLoader = {
+    "started": false,
+    "completed": false,
+    "table": null
+};
+
+function loadLinkTable() {
+    if (!linkTableLoader.started) {
+        linkTableLoader.started = true;
+        chrome.storage.local.get(["links"],(result)=>{
+            if (chrome.runtime.lastError) {
+                tabRedirect("error/index.html?code=6");
+            }
+            else if (typeof result.links !== "object") {
+                linkTableLoader.table = {};
+                linkTableLoader.completed = true;
+            }
+            else {
+                linkTableLoader.table = result.links;
+                linkTableLoader.completed = true;
+            }
+        });
+    }
 }
 
-chrome.omnibox.onInputEntered.addListener(omnibox);
+chrome.omnibox.onInputStarted.addListener(loadLinkTable);
+chrome.omnibox.onInputChanged.addListener(loadLinkTable);
+
+function useLinkTable(str, disposition) {
+    if (linkTableLoader.completed) {
+        linkTableLookup(linkTableLoader.table,str);
+    }
+    else {
+        loadLinkTable();
+        setTimeout(useLinkTable,20,str,disposition);
+    }
+}
+
+chrome.omnibox.onInputEntered.addListener(useLinkTable);
