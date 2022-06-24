@@ -81,11 +81,15 @@ function linkTableLookup(linkTable,s) {
     tabRedirect( "nomatch/index.html?link=" + encodeURIComponent(s) );
 }
 
-let linkTableLoader = {
-    "started": false,
-    "completed": false,
-    "table": null
-};
+function newLinkTableLoader() {
+    return {
+        "started": false,
+        "completed": false,
+        "table": null
+    };
+}
+
+let linkTableLoader = newLinkTableLoader();
 
 function loadLinkTable(localLoader) {
     // localLoader is our local copy of linkTableLoader
@@ -144,3 +148,11 @@ function startLinkRedirect(str,disposition) {
 }
 
 chrome.omnibox.onInputEntered.addListener(startLinkRedirect);
+
+function gotMail(message,sender,sendResponse) {
+    if (message === "clearLinkTableLoader") {
+        linkTableLoader = newLinkTableLoader();
+    }
+}
+
+chrome.runtime.onMessage.addListener(gotMail);
