@@ -34,6 +34,11 @@
             tableDisplay = "inline";
         }
     }
+    function saveLinkTableChanges() {
+        linkTable = linkTable;
+        chrome.storage.local.set({links:linkTable});
+        chrome.runtime.sendMessage("clearLinkTableLoader",(response)=>{});
+    }
     function trashClicked(key) {
         let show = [key.split("\x1F")[0]];
         if (typeof linkTable[key] === "undefined") {
@@ -46,8 +51,7 @@
         }
         if (confirm("Delete link? : "+show.join(""))) {
             delete linkTable[key];
-            linkTable = linkTable;
-            chrome.storage.local.set({links:linkTable});
+            saveLinkTableChanges();
         }
     }
     function createClicked(urltext,quicktext) {
@@ -67,8 +71,7 @@
             return;
         }
         linkTable[totalResult.quick] = totalResult.url;
-        linkTable = linkTable;
-        chrome.storage.local.set({links:linkTable});
+        saveLinkTableChanges();
     }
 </script>
 
