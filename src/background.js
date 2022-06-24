@@ -87,36 +87,60 @@ let linkTableLoader = {
     "table": null
 };
 
-function loadLinkTable() {
-    if (!linkTableLoader.started) {
-        linkTableLoader.started = true;
+function loadLinkTable(localLoader) {
+    // localLoader is our local copy of linkTableLoader
+    if (!localLoader.started) {
+        localLoader.started = true;
         chrome.storage.local.get(["links"],(result)=>{
             if (chrome.runtime.lastError) {
                 tabRedirect("error/index.html?code=6");
             }
             else if (typeof result.links !== "object") {
-                linkTableLoader.table = {};
-                linkTableLoader.completed = true;
+                localLoader.table = {};
+                localLoader.completed = true;
             }
             else {
-                linkTableLoader.table = result.links;
-                linkTableLoader.completed = true;
+                localLoader.table = result.links;
+                localLoader.completed = true;
             }
         });
     }
 }
 
-chrome.omnibox.onInputStarted.addListener(loadLinkTable);
-chrome.omnibox.onInputChanged.addListener(loadLinkTable);
+function loadLinkTableCaller() {
+    loadLinkTable(linkTableLoader);
+    // create local copy of linkTableLoader
+    // and only change the local copy
+    // that way if the table changes,
+    // the changes will be isolated from the edits here
+}
 
-function useLinkTable(str, disposition) {
-    if (linkTableLoader.completed) {
-        linkTableLookup(linkTableLoader.table,str);
+chrome.omnibox.onInputStarted.addListener(loadLinkTableCaller);
+chrome.omnibox.onInputChanged.addListener(loadLinkTableCaller);
+
+function useLinkTable(str, localLoader, iterationCount) {
+    // str was given by the user
+    // localLoader is our local copy of linkTableLoader
+    // iterationCount is the number of times that this function
+    // has been called for this input
+    // we need to wait until the completed flag is marked
+    // on localLoader
+    if (localLoader.completed) {
+        linkTableLookup(localLoader.table,str);
+    }
+    else if (iterationCount < 100) {
+        setTimeout(useLinkTable,20,str,localLoader,iterationCount+1);
     }
     else {
-        loadLinkTable();
-        setTimeout(useLinkTable,20,str,disposition);
+        tabRedirect("error/index.html?code=9");
     }
 }
 
-chrome.omnibox.onInputEntered.addListener(useLinkTable);
+function startLinkRedirect(str,disposition) {
+    // lock the linkTableLoader ref
+    // so the loader and the lookup share the same copy
+    loadLinkTable(linkTableLoader);
+    useLinkTable(str,linkTableLoader,0);
+}
+
+chrome.omnibox.onInputEntered.addListener(startLinkRedirect);
