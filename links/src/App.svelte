@@ -65,6 +65,11 @@
             alert("quick link is not properly formatted");
             return;
         }
+        if (quickResult.complexCharacters) {
+            if (!confirm("Link contains characters outside [a-z][0-9]. Continue?")) {
+                return;
+            }
+        }
         let totalResult = buildLinkPair(urlResult,quickResult);
         if (!totalResult.valid) {
             alert("variables in url and quick link do not match");

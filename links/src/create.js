@@ -49,6 +49,7 @@ class handleQuickresult {
         this.valid = false;
         this.link = "";
         this.variables = [];
+        this.complexCharacters = false;
     }
 }
 
@@ -91,6 +92,21 @@ export function handleQuick(quicktext) {
             // make sure that there are no prior variable sections
             if (seenVariable) {
                 return output;
+            }
+            // check for characters which are hard to type
+            // and are likely an accident
+            if (!output.complexCharacters) {
+                for (let j = 0; j < sections[i].length; ++j) {
+                    let charCodeValue = sections[i].charCodeAt(j);
+                    if (charCodeValue >= 97 && charCodeValue <= 122) {
+                        continue;
+                    }
+                    if (charCodeValue >= 48 && charCodeValue <= 57) {
+                        continue;
+                    }
+                    output.complexCharacters = true;
+                    break;
+                }
             }
         }
     }
