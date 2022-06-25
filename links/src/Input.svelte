@@ -11,8 +11,12 @@
             quicktext.value = queryCreate;
         }
 	});
+    function clearFields() {
+        urltext.value = "";
+        quicktext.value = "";
+    }
     function create() {
-        createHandler(urltext.value,quicktext.value);
+        createHandler(urltext.value,quicktext.value,clearFields);
     }
 </script>
 

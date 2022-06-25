@@ -54,7 +54,7 @@
             saveLinkTableChanges();
         }
     }
-    function createClicked(urltext,quicktext) {
+    function createClicked(urltext,quicktext,clearFields) {
         let urlResult = handleURL(urltext);
         if (!urlResult.valid) {
             alert("url is not properly formatted")
@@ -70,6 +70,7 @@
             alert("variables in url and quick link do not match");
             return;
         }
+        clearFields();
         linkTable[totalResult.quick] = totalResult.url;
         saveLinkTableChanges();
     }
