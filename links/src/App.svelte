@@ -70,6 +70,11 @@
             alert("variables in url and quick link do not match");
             return;
         }
+        if (typeof linkTable[totalResult.quick] !== "undefined") {
+            if (!confirm("Link already exists. Overwrite? : "+quicktext)) {
+                return;
+            }
+        }
         clearFields();
         linkTable[totalResult.quick] = totalResult.url;
         saveLinkTableChanges();
