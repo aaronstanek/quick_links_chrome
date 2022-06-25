@@ -11,7 +11,7 @@ class handleURLresult {
 export function handleURL(urltext) {
     // check the format
     let output = new handleURLresult();
-    if (urltext.slice(0,7) !== "http://" && urltext.slice(0,8) !== "https://") {
+    if (urltext.split("://").length !== 2) {
         return output;
     }
     urltext = urltext.split("%x").join("%X");
