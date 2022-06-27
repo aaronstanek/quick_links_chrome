@@ -2,7 +2,6 @@
     'use strict';
     import Table from "./Table.svelte";
     import {handleURL,handleQuick,buildLinkPair} from "./create.js";
-    let linkTableLocked = false;
     let linkTable = "Loading";
     function updateLinkTable() {
         chrome.storage.local.get(["links"],(result)=>{
