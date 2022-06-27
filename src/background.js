@@ -69,12 +69,8 @@ function linkTableLookup(linkTable,s) {
             return tabRedirect("links/index.html");
         }
         else if (sections[1] === "new") {
-            if (sections.length === 3) {
-                return tabRedirect("links/index.html?create=" + encodeURIComponent(sections[2]));
-            }
-            else {
-                return tabRedirect("links/index.html");
-            }
+            let newQuick = sections.slice(2).join("/");
+            return tabRedirect("links/index.html?create="+encodeURIComponent(newQuick));
         }
         else if (sections[1] === "help") {
             return tabRedirect("https://github.com/aaronstanek/quick_links_chrome");
