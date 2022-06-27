@@ -45,12 +45,23 @@ function linkTableLookupHandle2(result, sections, sectionConsider, argCount) {
 }
 
 function linkTableLookup(linkTable,s) {
-    if (s === "links") {
-        return tabRedirect("links/index.html");
-    }
     let sections = s.split("/");
     if (sections.length > 16) {
         return tabRedirect("error/index.html?code=8");
+    }
+    if (sections[0] === "links") {
+        if (s === "links") {
+            return tabRedirect("links/index.html");
+        }
+        else if (s === "links/export") {
+            return tabRedirect("export/index.html");
+        }
+        else if (s === "links/import") {
+            return tabRedirect("import/index.html");
+        }
+        else {
+            tabRedirect( "nomatch/index.html?link=" + encodeURIComponent(s) );
+        }
     }
     let sectionConsider = sections.length;
     while (sectionConsider > 0) {
