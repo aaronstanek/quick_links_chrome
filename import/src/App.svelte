@@ -4,6 +4,8 @@
     let importBar;
     function doImport() {
         let linkTable;
+        // check that the user entered valid JSON
+        // get the JSON tree if it is valid
         try {
             linkTable = JSON.parse(importBar.value);
         }
@@ -11,10 +13,12 @@
             alert("Unable to parse JSON");
             return;
         }
+        // check that the user input has a valid format
         if (!checkFormat(linkTable)) {
             alert("Invalid input")
             return;
         }
+        // save and redirect
         chrome.storage.local.set({links:linkTable});
         window.location.href = "../links/index.html";
     }
