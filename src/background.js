@@ -61,14 +61,28 @@ function linkTableLookup(linkTable,s) {
     if (sections.length > 16) {
         return tabRedirect("error/index.html?code=8");
     }
-    if (sections[0] === "links") {
-        if (s === "links") {
+    if (sections[0] === "help") {
+        return tabRedirect("https://github.com/aaronstanek/quick_links_chrome");
+    }
+    else if (sections[0] === "links") {
+        if (sections.length === 1) {
             return tabRedirect("links/index.html");
         }
-        else if (s === "links/export") {
+        else if (sections[1] === "new") {
+            if (sections.length === 3) {
+                return tabRedirect("links/index.html?create=" + encodeURIComponent(sections[2]));
+            }
+            else {
+                return tabRedirect("links/index.html");
+            }
+        }
+        else if (sections[1] === "help") {
+            return tabRedirect("https://github.com/aaronstanek/quick_links_chrome");
+        }
+        else if (sections[1] === "export") {
             return tabRedirect("export/index.html");
         }
-        else if (s === "links/import") {
+        else if (sections[1] === "import") {
             return tabRedirect("import/index.html");
         }
         else {
