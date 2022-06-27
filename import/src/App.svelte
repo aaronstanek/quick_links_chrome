@@ -1,5 +1,6 @@
 <script>
     'use strict';
+    import {checkFormat} from "./checkFormat";
     let importBar;
     function doImport() {
         let linkTable;
@@ -8,6 +9,10 @@
         }
         catch (e) {
             alert("Unable to parse JSON");
+            return;
+        }
+        if (!checkFormat(linkTable)) {
+            alert("Invalid input")
             return;
         }
         chrome.storage.local.set({links:linkTable});
