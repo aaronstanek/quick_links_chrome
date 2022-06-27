@@ -14,6 +14,10 @@ function linkTableLookupHandle1(result, sections, sectionConsider) {
 }
 
 function linkTableLookupHandle2(result, sections, sectionConsider, argCount) {
+    // result is the linkTable lookup result
+    // sections is the original user input divided into sections
+    // sectionConsider is how many sections are used as part of the core link
+    // argCount is the number of arguments
     let table = result.split("\x1E");
     if (table.length !== 2) {
         return tabRedirect("error/index.html?code=2");
@@ -22,15 +26,23 @@ function linkTableLookupHandle2(result, sections, sectionConsider, argCount) {
     if (urlParts.length !== argCount*2+1) {
         return tabRedirect("error/index.html?code=3");
     }
+    // urlParts contains the target url as an array of strings
+    // but is broken along \x1F so all the odd
+    // indicies are unresolved variables
     let varnames = table[1];
     if (varnames.length !== argCount) {
         return tabRedirect("error/index.html?code=4");
     }
+    // varnames is a string containing the variable names
+    // in the order in which they appear in the quick link
     for (let i = 1; i < urlParts.length; i += 2) {
+        // iterate over all unresolved variables in the target url
         let name = urlParts[i];
         // find the index of name
         let nameIndex = -1;
         for (let j = 0; j < varnames.length; ++j) {
+            // iterate over the varnames array to determine
+            // where the variable is defined
             if (name == varnames[j]) {
                 nameIndex = j;
                 break;
@@ -39,7 +51,7 @@ function linkTableLookupHandle2(result, sections, sectionConsider, argCount) {
         if (nameIndex < 0) {
             return tabRedirect("error/index.html?code=5");
         }
-        urlParts[i] = sections[sectionConsider + nameIndex];
+        urlParts[i] = encodeURIComponent( sections[sectionConsider + nameIndex] );
     }
     tabRedirect(urlParts.join(""));
 }
