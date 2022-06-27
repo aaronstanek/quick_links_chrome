@@ -61,17 +61,21 @@ export function handleQuick(quicktext) {
         return output;
     }
     let seenVariable = false;
+    // flips to true when we see a variable
     for (let i = 0; i < sections.length; ++i) {
         if (sections[i].length === 0) {
+            // quick link may not contain any empty sections
             return output;
         }
         sections[i] = sections[i].split("%x").join("%X");
+        // this line replaces all instances of %x with %X
         if (sections[i].split("%X").length > 1) {
             // it contains %X
             if (sections[i].length !== 3) {
+                // we expect only %X* in a variable section
                 return output;
             }
-            let varname = sections[i][2];
+            let varname = sections[i][2]; // this is the numeral in the varname
             if (varname.charCodeAt(0) < 48 || varname.charCodeAt(0) > 57) {
                 // variable name is not a numeral
                 return output;
@@ -99,9 +103,11 @@ export function handleQuick(quicktext) {
                 for (let j = 0; j < sections[i].length; ++j) {
                     let charCodeValue = sections[i].charCodeAt(j);
                     if (charCodeValue >= 97 && charCodeValue <= 122) {
+                        // lowercase
                         continue;
                     }
                     if (charCodeValue >= 48 && charCodeValue <= 57) {
+                        // numeral
                         continue;
                     }
                     output.complexCharacters = true;
