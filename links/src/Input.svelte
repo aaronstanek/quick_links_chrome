@@ -1,10 +1,12 @@
 <script>
     'use strict';
     import { onMount } from 'svelte';
-    export let createHandler
+    export let createHandler // pass create operation upwards
     let urltext;
     let quicktext;
 	onMount(async () => {
+        // if user came here from another place
+        // they might be expecting to create a particular link
 		let params = new URLSearchParams(window.location.search);
         let queryCreate = params.get("create");
         if (typeof queryCreate === "string") {
@@ -16,6 +18,8 @@
         quicktext.value = "";
     }
     function create() {
+        // when the user presses the "create" button
+        // pass the user input upwards
         createHandler(urltext.value,quicktext.value,clearFields);
     }
 </script>

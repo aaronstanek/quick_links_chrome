@@ -3,14 +3,15 @@
     import Row from "./Row.svelte";
     import Input from "./Input.svelte";
     export let linkTable;
-    export let trash;
-    export let create;
+    export let trash; // pass delete operation upwards
+    export let create; // pass create operation upwards
     let rows = [];
     function createRows(table) {
         if (typeof table !== "object") {
             return [];
         }
         let keys = Object.keys(table).sort();
+        // put the links in alphabetical (ish) order
         let output = [];
         for (let i = 0; i < keys.length; ++i) {
             let key = keys[i];
