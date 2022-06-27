@@ -13,6 +13,13 @@ function checkKeyFormat(key) {
     if (sections[0].length < 1 || sections[1].length < 1) {
         return false;
     }
+    // links and help are protected
+    if (sections[0] === "links"
+        || sections[0].slice(0,6) === "links/"
+        || sections[0] === "help"
+        || sections[0].slice(0,5) === "help/") {
+            return false;
+    }
     // the text after \x1F represents the number of arguments
     // that the link accepts
     let argNumber = sections[1];

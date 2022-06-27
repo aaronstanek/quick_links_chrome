@@ -57,7 +57,7 @@ export function handleQuick(quicktext) {
     // check the format
     let output = new handleQuickresult();
     let sections = quicktext.split("/");
-    if (sections[0] === "links") {
+    if (sections[0] === "links" || sections[0] === "help") {
         return output;
     }
     let seenVariable = false;
