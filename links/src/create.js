@@ -56,10 +56,10 @@ class handleQuickresult {
 export function handleQuick(quicktext) {
     // check the format
     let output = new handleQuickresult();
-    if (quicktext === "links") {
+    let sections = quicktext.split("/");
+    if (sections[0] === "links") {
         return output;
     }
-    let sections = quicktext.split("/");
     let seenVariable = false;
     for (let i = 0; i < sections.length; ++i) {
         if (sections[i].length === 0) {
