@@ -33,7 +33,7 @@
             return;
         }
         if (typeof linkTable[totalResult.quick] !== "undefined") {
-            if (!confirm("Link already exists. Overwrite? : "+quicktext)) {
+            if (!confirm("Link already exists. Overwrite? : "+localQuickText)) {
                 return;
             }
         }
