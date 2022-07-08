@@ -1,13 +1,13 @@
 <script>
     'use strict';
-    import {handleURL,handleQuick,buildLinkPair} from "./create.js";
+    import {handleURL,handleQuick,buildLinkPair} from "../../links/src/create.js";
     let table;
     let wintext;
     let urltext;
     let quicktext;
     function showSuccess() {
         table.style.display = "none";
-        wintext.style.display = "inline";
+        wintext.style.display = "block";
     }
     function handleCreate(localUrlText,localQuickText,linkTable) {
         // see the createClicked function in links
@@ -44,21 +44,19 @@
     }
     function create() {
         // create button was pressed, we should create a link
-        if (!createLocked) {
-            let localUrlText = urltext;
-            let localQuickText = quicktext;
-            chrome.storage.local.get(["links"],(result)=>{
-                if (chrome.runtime.lastError) {
-                    alert("There was an error loading data.");
-                }
-                else if (typeof result.links !== "object") {
-                    handleCreate(localUrlText,localQuickText,{});
-                }
-                else {
-                    handleCreate(localUrlText,localQuickText,result.links);
-                }
-            });
-        }
+        let localUrlText = urltext.value;
+        let localQuickText = quicktext.value;
+        chrome.storage.local.get(["links"],(result)=>{
+            if (chrome.runtime.lastError) {
+                alert("There was an error loading data.");
+            }
+            else if (typeof result.links !== "object") {
+                handleCreate(localUrlText,localQuickText,{});
+            }
+            else {
+                handleCreate(localUrlText,localQuickText,result.links);
+            }
+        });
     }
 </script>
 
@@ -80,7 +78,9 @@
 
 </div>
 
-<p class="wintext" bind:this={wintext}>Your link was successfully created!</p>
+<div class="wintext" bind:this={wintext}>
+    <p>Your link was successfully created!</p>
+</div>
 
 <style>
     p {
@@ -123,6 +123,9 @@
         cursor: pointer;
     }
     .wintext {
+        text-align: center;
         display: none;
+        width: 510px;
+        margin: 30px;
     }
 </style>
