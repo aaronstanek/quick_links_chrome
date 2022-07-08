@@ -28,3 +28,9 @@ cp import/public/index.html src/import
 cp import/public/build/bundle.css src/import/build
 cp import/public/build/bundle.js src/import/build
 cp import/public/build/bundle.js.map src/import/build
+
+mkdir -p src/popup/build
+cp popup/public/index.html src/popup
+cp popup/public/build/bundle.css src/popup/build
+cp popup/public/build/bundle.js src/popup/build
+cp popup/public/build/bundle.js.map src/popup/build
