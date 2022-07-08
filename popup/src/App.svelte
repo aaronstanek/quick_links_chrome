@@ -1,13 +1,68 @@
 <script>
     'use strict';
+    import {handleURL,handleQuick,buildLinkPair} from "./create.js";
+    let table;
+    let wintext;
     let urltext;
     let quicktext;
+    function showSuccess() {
+        table.style.display = "none";
+        wintext.style.display = "inline";
+    }
+    function handleCreate(localUrlText,localQuickText,linkTable) {
+        // see the createClicked function in links
+        // for a guide of how this function works
+        let urlResult = handleURL(localUrlText);
+        if (!urlResult.valid) {
+            alert("url is not properly formatted");
+            return;
+        }
+        let quickResult = handleQuick(localQuickText);
+        if (!quickResult.valid) {
+            alert("quick link is not properly formatted");
+            return;
+        }
+        if (quickResult.complexCharacters) {
+            if (!confirm("Link contains characters outside [a-z][0-9]. Continue?")) {
+                return;
+            }
+        }
+        let totalResult = buildLinkPair(urlResult,quickResult);
+        if (!totalResult.valid) {
+            alert("variables in url and quick link do not match");
+            return;
+        }
+        if (typeof linkTable[totalResult.quick] !== "undefined") {
+            if (!confirm("Link already exists. Overwrite? : "+quicktext)) {
+                return;
+            }
+        }
+        showSuccess();
+        linkTable[totalResult.quick] = totalResult.url;
+        chrome.storage.local.set({links:linkTable});
+        chrome.runtime.sendMessage("clearLinkTableLoader",(response)=>{});
+    }
     function create() {
-        alert("create was pressed.");
+        // create button was pressed, we should create a link
+        if (!createLocked) {
+            let localUrlText = urltext;
+            let localQuickText = quicktext;
+            chrome.storage.local.get(["links"],(result)=>{
+                if (chrome.runtime.lastError) {
+                    alert("There was an error loading data.");
+                }
+                else if (typeof result.links !== "object") {
+                    handleCreate(localUrlText,localQuickText,{});
+                }
+                else {
+                    handleCreate(localUrlText,localQuickText,result.links);
+                }
+            });
+        }
     }
 </script>
 
-<div class="table">
+<div class="table" bind:this={table}>
 
     <div class="row rowtop">
         <p class="lefttext">URL:</p>
@@ -24,6 +79,8 @@
     </div>
 
 </div>
+
+<p class="wintext" bind:this={wintext}>Your link was successfully created!</p>
 
 <style>
     p {
@@ -64,5 +121,8 @@
         text-align: center;
         background-color: #4dff4d;
         cursor: pointer;
+    }
+    .wintext {
+        display: none;
     }
 </style>
