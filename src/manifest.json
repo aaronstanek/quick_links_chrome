@@ -10,6 +10,7 @@
       },
     "description": "Fast in-browser go-links implementation",
     "permissions": [
+        "tabs",
         "omnibox",
         "storage",
         "unlimitedStorage"
