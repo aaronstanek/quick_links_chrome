@@ -1,10 +1,20 @@
 <script>
     'use strict';
+    import { onMount } from 'svelte';
     import {handleURL,handleQuick,buildLinkPair} from "../../links/src/create.js";
     let table;
     let wintext;
     let urltext;
     let quicktext;
+	onMount(async () => {
+        // by default, assume that the user will
+        // want to create a link to the page that they are on
+        let queryOptions = { active: true, lastFocusedWindow: true };
+        let [tab] = await chrome.tabs.query(queryOptions);
+        if (typeof tab !== "undefined") {
+            urltext.value = tab.url;
+        }
+	});
     function showSuccess() {
         table.style.display = "none";
         wintext.style.display = "block";
