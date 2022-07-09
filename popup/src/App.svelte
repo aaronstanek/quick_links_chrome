@@ -70,6 +70,15 @@
     }
 </script>
 
+<div class="linksArea">
+    <p class="link">View Links</p>
+    <p class="link">Export Links</p>
+    <p class="link">Import Links</p>
+    <p class="link">Help</p>
+</div>
+
+<hr class="separate">
+
 <div class="table" bind:this={table}>
 
     <div class="row rowtop">
@@ -137,5 +146,28 @@
         display: none;
         width: 510px;
         margin: 30px;
+    }
+    .separate {
+        width: 80%;
+        border-top: 3px solid gray;
+        border-bottom: 15px;
+        border-left: 0px;
+        border-right: 0px;
+        margin-top: 15px;
+    }
+    .linksArea {
+        text-align: center;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto; 
+    }
+    .link {
+        flex: 1;
+        margin: 0px;
+        color: #0099ff;
+        cursor: pointer;
+    }
+    .link:hover {
+        text-decoration: underline;
     }
 </style>
