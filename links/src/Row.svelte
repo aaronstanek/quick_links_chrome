@@ -1,9 +1,15 @@
 <script>
     'use strict';
+    import { onMount } from 'svelte';
     import RedPercent from "./RedPercent.svelte";
     export let content; // [key,linkTable[key],i]
     export let trash; // pass delete operation upwards
     export let pushDisableEdit; // pass editing disable upwards
+    let display;
+    let edit;
+	onMount(async () => {
+        edit.style.display = "none";
+	});
     let show = ["",""];
     function createShow0(c) {
         // show the links in the case that
@@ -73,21 +79,37 @@
         }
     }
     $: rowStyle = updateRowStyle(content);
+    function enableLocalEdit() {
+        display.style.display = "none";
+        edit.style.display = "flex";
+    }
     function disableLocalEdit() {
-
+        edit.style.display = "none";
+        display.style.display = "flex";
     }
     function processPencilClick() {
         pushDisableEdit(disableLocalEdit);
+        enableLocalEdit();
     }
     function processTrashClick() {
         trash(content[0]);
     }
 </script>
 
-<div class={rowStyle}>
+<div class={rowStyle} bind:this={display}>
     <p class="url left"><RedPercent text={show[0]}></RedPercent></p>
     <p class="spacer"></p>
     <p class="url right"><RedPercent text={show[1]}></RedPercent></p>
+    <p class="spacer"></p>
+    <img class="pencil" src="pencil.svg" alt="pencil icon" on:click={processPencilClick}>
+    <p class="spacer"></p>
+    <img class="trash" src="trash.svg" alt="trash icon" on:click={processTrashClick}>
+</div>
+
+<div class={rowStyle} bind:this={edit}>
+    <input class="url left" type="text" />
+    <p class="spacer"></p>
+    <input class="url right" type="text" />
     <p class="spacer"></p>
     <img class="pencil" src="pencil.svg" alt="pencil icon" on:click={processPencilClick}>
     <p class="spacer"></p>
