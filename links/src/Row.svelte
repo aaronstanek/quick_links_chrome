@@ -82,6 +82,8 @@
     <p class="spacer"></p>
     <p class="url right"><RedPercent text={show[1]}></RedPercent></p>
     <p class="spacer"></p>
+    <img class="pencil" src="pencil.svg" alt="pencil icon" on:click={processClick}>
+    <p class="spacer"></p>
     <img class="trash" src="trash.svg" alt="trash icon" on:click={processClick}>
 </div>
 
@@ -107,9 +109,17 @@
     .right {
         flex: 30;
     }
+    .pencil {
+        height: 30px;
+        width: 30px;
+        display: block;
+        margin-top: auto;
+        margin-bottom: auto;
+        cursor: pointer;
+    }
     .trash {
-        flex: 2;
-        height: 40px;
+        height: 20px;
+        width: 20px;
         display: block;
         margin-top: auto;
         margin-bottom: auto;
