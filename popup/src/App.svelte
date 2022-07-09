@@ -68,13 +68,25 @@
             }
         });
     }
+    function linkTo_links() {
+        chrome.tabs.create({ url: "links/index.html" });
+    }
+    function linkTo_export() {
+        chrome.tabs.create({ url: "export/index.html" });
+    }
+    function linkTo_import() {
+        chrome.tabs.create({ url: "import/index.html" });
+    }
+    function linkTo_help() {
+        chrome.tabs.create({ url: "https://github.com/aaronstanek/quick_links_chrome" });
+    }
 </script>
 
 <div class="linksArea">
-    <p class="link">View Links</p>
-    <p class="link">Export Links</p>
-    <p class="link">Import Links</p>
-    <p class="link">Help</p>
+    <p class="link" on:click={linkTo_links}>View Links</p>
+    <p class="link" on:click={linkTo_export}>Export Links</p>
+    <p class="link" on:click={linkTo_import}>Import Links</p>
+    <p class="link" on:click={linkTo_help}>Help</p>
 </div>
 
 <hr class="separate">
