@@ -3,6 +3,7 @@
     import RedPercent from "./RedPercent.svelte";
     export let content; // [key,linkTable[key],i]
     export let trash; // pass delete operation upwards
+    export let pushDisableEdit; // pass editing disable upwards
     let show = ["",""];
     function createShow0(c) {
         // show the links in the case that
@@ -72,7 +73,13 @@
         }
     }
     $: rowStyle = updateRowStyle(content);
-    function processClick() {
+    function disableLocalEdit() {
+
+    }
+    function processPencilClick() {
+        pushDisableEdit(disableLocalEdit);
+    }
+    function processTrashClick() {
         trash(content[0]);
     }
 </script>
@@ -82,9 +89,9 @@
     <p class="spacer"></p>
     <p class="url right"><RedPercent text={show[1]}></RedPercent></p>
     <p class="spacer"></p>
-    <img class="pencil" src="pencil.svg" alt="pencil icon" on:click={processClick}>
+    <img class="pencil" src="pencil.svg" alt="pencil icon" on:click={processPencilClick}>
     <p class="spacer"></p>
-    <img class="trash" src="trash.svg" alt="trash icon" on:click={processClick}>
+    <img class="trash" src="trash.svg" alt="trash icon" on:click={processTrashClick}>
 </div>
 
 <style>
