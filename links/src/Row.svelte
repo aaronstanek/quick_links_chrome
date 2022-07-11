@@ -98,6 +98,9 @@
     function processTrashClick() {
         trash(content[0]);
     }
+    function processCheckmarkClick() {
+
+    }
 </script>
 
 <div class={rowStyle} bind:this={display}>
@@ -105,9 +108,9 @@
     <p class="spacer"></p>
     <p class="url right"><RedPercent text={show[1]}></RedPercent></p>
     <p class="spacer"></p>
-    <img class="pencil" src="pencil.svg" alt="pencil icon" on:click={processPencilClick}>
+    <img class="pencil" src="pencil.svg" alt="edit link" on:click={processPencilClick}>
     <p class="spacer"></p>
-    <img class="trash" src="trash.svg" alt="trash icon" on:click={processTrashClick}>
+    <img class="trash" src="trash.svg" alt="delete link" on:click={processTrashClick}>
 </div>
 
 <div class={rowStyle} bind:this={edit}>
@@ -115,9 +118,9 @@
     <p class="spacer"></p>
     <input class="url right" type="text" bind:this={editURL} />
     <p class="spacer"></p>
-    <img class="pencil" src="pencil.svg" alt="pencil icon" on:click={processPencilClick}>
+    <img class="pencil" src="checkmark.svg" alt="confirm edit" on:click={processCheckmarkClick}>
     <p class="spacer"></p>
-    <img class="trash" src="trash.svg" alt="trash icon" on:click={processTrashClick}>
+    <img class="trash" src="cancel.svg" alt="cancel edit" on:click={disableLocalEdit}>
 </div>
 
 <style>
