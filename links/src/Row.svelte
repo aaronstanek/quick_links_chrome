@@ -7,6 +7,8 @@
     export let pushDisableEdit; // pass editing disable upwards
     let display;
     let edit;
+    let editQuick;
+    let editURL;
 	onMount(async () => {
         edit.style.display = "none";
 	});
@@ -82,6 +84,8 @@
     function enableLocalEdit() {
         display.style.display = "none";
         edit.style.display = "flex";
+        editQuick.value = show[0];
+        editURL.value = show[1];
     }
     function disableLocalEdit() {
         edit.style.display = "none";
@@ -107,9 +111,9 @@
 </div>
 
 <div class={rowStyle} bind:this={edit}>
-    <input class="url left" type="text" />
+    <input class="url left" type="text" bind:this={editQuick} />
     <p class="spacer"></p>
-    <input class="url right" type="text" />
+    <input class="url right" type="text" bind:this={editURL} />
     <p class="spacer"></p>
     <img class="pencil" src="pencil.svg" alt="pencil icon" on:click={processPencilClick}>
     <p class="spacer"></p>
