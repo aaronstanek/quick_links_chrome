@@ -71,3 +71,5 @@ The export and import pages may be used to copy your data from one computer to a
 
 - Trash Can Icon: https://publicdomainvectors.org/en/free-clipart/Trash-can-icon/72340.html
 - Pencil Icon: https://publicdomainvectors.org/en/free-clipart/Pencil-icon/44337.html
+- Checkmark Icon: https://publicdomainvectors.org/en/free-clipart/Button-ok/87848.html
+- Cancel Icon: https://publicdomainvectors.org/en/free-clipart/Cancel-button-icon/87847.html
