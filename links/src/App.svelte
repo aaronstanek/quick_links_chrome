@@ -53,6 +53,7 @@
         // the user pressed the trash icon next to
         // one of the links
         // key is a string containing the key of the entry
+        pushDisableEdit(null);
         let show = [key.split("\x1F")[0]];
         // show is the human-readable
         // name for the link
@@ -78,6 +79,7 @@
         // clearFields is a callback function accepting no arguments
         // which will clear the input fields in the user's display
         // check the format of the urltext
+        pushDisableEdit(null);
         let urlResult = handleURL(urltext);
         if (!urlResult.valid) {
             alert("url is not properly formatted")
@@ -114,11 +116,21 @@
         linkTable[totalResult.quick] = totalResult.url;
         saveLinkTableChanges(); // need to push change
     }
+    let disableEdit = null;
+    function pushDisableEdit(elem) {
+        // elem is a function to call when we want
+        // to disable the current editing session
+        // pass null to clear
+        if (disableEdit !== null) {
+            disableEdit();
+        }
+        disableEdit = elem;
+    }
 </script>
 
 <main>
     <span style={"display:"+messageDisplay}><p>{messageValue}</p></span>
-    <span style={"display:"+tableDisplay}><Table linkTable={linkTable} trash={trashClicked} create={createClicked}></Table></span>
+    <span style={"display:"+tableDisplay}><Table linkTable={linkTable} trash={trashClicked} create={createClicked} pushDisableEdit={pushDisableEdit}></Table></span>
 </main>
 
 <style>

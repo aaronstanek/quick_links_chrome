@@ -5,6 +5,7 @@
     export let linkTable;
     export let trash; // pass delete operation upwards
     export let create; // pass create operation upwards
+    export let pushDisableEdit; // pass editing disable upwards
     let rows = [];
     function createRows(table) {
         if (typeof table !== "object") {
@@ -25,7 +26,7 @@
 <div class="table">
     <Input createHandler={create}></Input>
     {#each rows as row}
-        <Row content={row} trash={trash}></Row>
+        <Row content={row} trash={trash} pushDisableEdit={pushDisableEdit}></Row>
     {/each}
 </div>
 

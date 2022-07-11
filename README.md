@@ -66,3 +66,8 @@ Some links are built-in and cannot be deleted or changed.
 - `links/import`
 
 The export and import pages may be used to copy your data from one computer to another.
+
+## Public domain images
+
+- Trash Can Icon: https://publicdomainvectors.org/en/free-clipart/Trash-can-icon/72340.html
+- Pencil Icon: https://publicdomainvectors.org/en/free-clipart/Pencil-icon/44337.html
