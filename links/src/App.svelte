@@ -83,20 +83,20 @@
         let urlResult = handleURL(urltext);
         if (!urlResult.valid) {
             alert("url is not properly formatted")
-            return;
+            return false;
         }
         // check the format of the quick link
         let quickResult = handleQuick(quicktext);
         if (!quickResult.valid) {
             alert("quick link is not properly formatted");
-            return;
+            return false;
         }
         if (quickResult.complexCharacters) {
             // if the quick link has characters beyond [a-z][0-9]
             // it is probably a mistake, and the users should have
             // an opportunity to correct it before it is placed
             if (!confirm("Link contains characters outside [a-z][0-9]. Continue?")) {
-                return;
+                return false;
             }
         }
         // make sure that the variables used in the url are all
@@ -105,16 +105,17 @@
         let totalResult = buildLinkPair(urlResult,quickResult);
         if (!totalResult.valid) {
             alert("variables in url and quick link do not match");
-            return;
+            return false;
         }
         if (typeof linkTable[totalResult.quick] !== "undefined") {
             if (!confirm("Link already exists. Overwrite? : "+quicktext)) {
-                return;
+                return false;
             }
         }
         clearFields();
         linkTable[totalResult.quick] = totalResult.url;
         saveLinkTableChanges(); // need to push change
+        return true;
     }
     let disableEdit = null;
     function pushDisableEdit(elem) {
