@@ -72,12 +72,10 @@
             saveLinkTableChanges(); // need to push change
         }
     }
-    function createClicked(urltext,quicktext,clearFields) {
+    function createClicked(urltext,quicktext) {
         // user clicked the create link button
         // urltext is the text in the target url field
         // quicktext is the text in the quick link field
-        // clearFields is a callback function accepting no arguments
-        // which will clear the input fields in the user's display
         // check the format of the urltext
         let output = {
             "created": false,
@@ -117,7 +115,6 @@
                 return output;
             }
         }
-        clearFields();
         linkTable[totalResult.quick] = totalResult.url;
         saveLinkTableChanges(); // need to push change
         output.created = true;

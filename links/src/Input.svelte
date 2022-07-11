@@ -13,14 +13,13 @@
             quicktext.value = queryCreate;
         }
 	});
-    function clearFields() {
-        urltext.value = "";
-        quicktext.value = "";
-    }
     function create() {
         // when the user presses the "create" button
         // pass the user input upwards
-        createHandler(urltext.value,quicktext.value,clearFields);
+        if (createHandler(urltext.value,quicktext.value).created) {
+            urltext.value = "";
+            quicktext.value = "";
+        }
     }
 </script>
 
