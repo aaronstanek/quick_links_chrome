@@ -102,7 +102,7 @@
     function processCheckmarkClick() {
         // calling editLink will result in a call
         // to disableLocalEdit
-        editLink(editURL.value,editQuick.value,show[0]);
+        editLink(editURL.value,editQuick.value,content[0]);
     }
 </script>
 
