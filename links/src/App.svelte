@@ -120,6 +120,15 @@
         output.created = true;
         return output;
     }
+    function editLink(urltext,quicktext,oldQuicktext) {
+        let result = createClicked(urltext,quicktext);
+        if (result.created) {
+            if (!result.overwrite) {
+                delete linkTable[oldQuicktext];
+                saveLinkTableChanges();
+            }
+        }
+    }
     let disableEdit = null;
     function pushDisableEdit(elem) {
         // elem is a function to call when we want
@@ -134,7 +143,7 @@
 
 <main>
     <span style={"display:"+messageDisplay}><p>{messageValue}</p></span>
-    <span style={"display:"+tableDisplay}><Table linkTable={linkTable} trash={trashClicked} create={createClicked} pushDisableEdit={pushDisableEdit}></Table></span>
+    <span style={"display:"+tableDisplay}><Table linkTable={linkTable} trash={trashClicked} create={createClicked} pushDisableEdit={pushDisableEdit} editLink={editLink}></Table></span>
 </main>
 
 <style>

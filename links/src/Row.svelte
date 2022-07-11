@@ -5,6 +5,7 @@
     export let content; // [key,linkTable[key],i]
     export let trash; // pass delete operation upwards
     export let pushDisableEdit; // pass editing disable upwards
+    export let editLink;
     let display;
     let edit;
     let editQuick;
@@ -99,7 +100,9 @@
         trash(content[0]);
     }
     function processCheckmarkClick() {
-
+        // calling editLink will result in a call
+        // to disableLocalEdit
+        editLink(editURL.value,editQuick.value,show[0]);
     }
 </script>
 
