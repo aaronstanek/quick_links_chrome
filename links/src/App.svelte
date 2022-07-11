@@ -79,24 +79,28 @@
         // clearFields is a callback function accepting no arguments
         // which will clear the input fields in the user's display
         // check the format of the urltext
+        let output = {
+            "created": false,
+            "overwrite": false
+        };
         pushDisableEdit(null);
         let urlResult = handleURL(urltext);
         if (!urlResult.valid) {
             alert("url is not properly formatted")
-            return false;
+            return output;
         }
         // check the format of the quick link
         let quickResult = handleQuick(quicktext);
         if (!quickResult.valid) {
             alert("quick link is not properly formatted");
-            return false;
+            return output;
         }
         if (quickResult.complexCharacters) {
             // if the quick link has characters beyond [a-z][0-9]
             // it is probably a mistake, and the users should have
             // an opportunity to correct it before it is placed
             if (!confirm("Link contains characters outside [a-z][0-9]. Continue?")) {
-                return false;
+                return output;
             }
         }
         // make sure that the variables used in the url are all
@@ -105,17 +109,19 @@
         let totalResult = buildLinkPair(urlResult,quickResult);
         if (!totalResult.valid) {
             alert("variables in url and quick link do not match");
-            return false;
+            return output;
         }
         if (typeof linkTable[totalResult.quick] !== "undefined") {
+            output.overwrite = true;
             if (!confirm("Link already exists. Overwrite? : "+quicktext)) {
-                return false;
+                return output;
             }
         }
         clearFields();
         linkTable[totalResult.quick] = totalResult.url;
         saveLinkTableChanges(); // need to push change
-        return true;
+        output.created = true;
+        return output;
     }
     let disableEdit = null;
     function pushDisableEdit(elem) {
