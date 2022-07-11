@@ -72,7 +72,7 @@
             saveLinkTableChanges(); // need to push change
         }
     }
-    function createClicked(urltext,quicktext) {
+    function createClicked(urltext,quicktext,supressOverwriteWarning) {
         // user clicked the create link button
         // urltext is the text in the target url field
         // quicktext is the text in the quick link field
@@ -111,8 +111,10 @@
         }
         if (typeof linkTable[totalResult.quick] !== "undefined") {
             output.overwrite = true;
-            if (!confirm("Link already exists. Overwrite? : "+quicktext)) {
-                return output;
+            if (!supressOverwriteWarning) {
+                if (!confirm("Link already exists. Overwrite? : "+quicktext)) {
+                    return output;
+                }
             }
         }
         linkTable[totalResult.quick] = totalResult.url;
@@ -121,7 +123,7 @@
         return output;
     }
     function editLink(urltext,quicktext,oldQuicktext) {
-        let result = createClicked(urltext,quicktext);
+        let result = createClicked(urltext,quicktext,true);
         if (result.created) {
             if (!result.overwrite) {
                 delete linkTable[oldQuicktext];

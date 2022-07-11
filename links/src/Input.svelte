@@ -16,7 +16,7 @@
     function create() {
         // when the user presses the "create" button
         // pass the user input upwards
-        if (createHandler(urltext.value,quicktext.value).created) {
+        if (createHandler(urltext.value,quicktext.value,false).created) {
             urltext.value = "";
             quicktext.value = "";
         }
