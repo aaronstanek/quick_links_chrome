@@ -102,7 +102,14 @@
     function processCheckmarkClick() {
         // calling editLink will result in a call
         // to disableLocalEdit
-        editLink(editURL.value,editQuick.value,content[0]);
+        let created = editLink(editURL.value,editQuick.value,content[0]);
+        if (!created) {
+            let localURL = editURL.value;
+            let localQuick = editQuick.value;
+            processPencilClick();
+            editURL.value = localURL;
+            editQuick.value = localQuick;
+        }
     }
 </script>
 

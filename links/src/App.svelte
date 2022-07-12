@@ -130,6 +130,7 @@
                 saveLinkTableChanges();
             }
         }
+        return result.created;
     }
     let disableEdit = null;
     function pushDisableEdit(elem) {
