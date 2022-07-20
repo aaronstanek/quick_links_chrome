@@ -10,12 +10,7 @@ function npmInstallEachPage() {
     for (let i = 0; i < pageList.length; ++i) {
         var pageName = pageList[i]
         var directory = path.join(path.join('src','pages',pageName))
-        if (platform === 'win32') {
-            init.beforeTask('cd ' + directory + ' && npm install')
-        }
-        else {
-            init.beforeTask('cd ' + directory + ' ; npm install')
-        }
+        init.beforeTask('cd ' + directory + ' && npm install')
     }
 }
 
