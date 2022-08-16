@@ -1,7 +1,15 @@
 <script>
     'use strict';
+    import { onMount } from 'svelte';
     import {checkFormat} from "./checkFormat";
+    import {enterToPressButton} from "../../modular/enterToPressButton.js";
     let importBar;
+    let buttonImport;
+	onMount(async () => {
+        // when the user hits enter, we will
+        // consider is a button press of the import button
+        enterToPressButton(importBar,buttonImport);
+	});
     function doImport() {
         let linkTable;
         // check that the user entered valid JSON
@@ -29,7 +37,7 @@
         <div class="row">
             <input class="in" type="text" bind:this={importBar} />
             <p class="spacer"></p>
-            <p class="import" on:click={doImport}>IMPORT</p>
+            <p class="import" on:click={doImport} bind:this={buttonImport}>IMPORT</p>
         </div>
     </div>
 </main>
