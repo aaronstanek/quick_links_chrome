@@ -2,6 +2,7 @@
     'use strict';
     import { onMount } from 'svelte';
     import RedPercent from "./RedPercent.svelte";
+    import {enterToPressButton} from "../../modular/enterToPressButton.js";
     export let content; // [key,linkTable[key],i]
     export let trash; // pass delete operation upwards
     export let pushDisableEdit; // pass editing disable upwards
@@ -10,7 +11,12 @@
     let edit;
     let editQuick;
     let editURL;
+    let checkmarkIcon;
 	onMount(async () => {
+        // when the user hits enter, we will
+        // consider it a button press of the check mark icon
+        enterToPressButton(editQuick,checkmarkIcon);
+        enterToPressButton(editURL,checkmarkIcon);
         edit.style.display = "none";
 	});
     let show = ["",""];
@@ -128,7 +134,7 @@
     <p class="spacer"></p>
     <input class="url right" type="text" bind:this={editURL} />
     <p class="spacer"></p>
-    <img class="pencil" src="checkmark.svg" alt="confirm edit" on:click={processCheckmarkClick}>
+    <img class="pencil" src="checkmark.svg" alt="confirm edit" on:click={processCheckmarkClick} bind:this={checkmarkIcon}>
     <p class="spacer"></p>
     <img class="trash" src="cancel.svg" alt="cancel edit" on:click={disableLocalEdit}>
 </div>
