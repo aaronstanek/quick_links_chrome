@@ -2,11 +2,17 @@
     'use strict';
     import { onMount } from 'svelte';
     import {handleURL,handleQuick,buildLinkPair} from "../../links/src/create.js";
+    import {enterToPressButton} from "../../modular/enterToPressButton.js";
     let table;
     let wintext;
     let urltext;
     let quicktext;
+    let buttonCreate;
 	onMount(async () => {
+        // when the user hits enter, we will
+        // consider is a button press of the create button
+        enterToPressButton(urltext,buttonCreate);
+        enterToPressButton(quicktext,buttonCreate);
         // by default, assume that the user will
         // want to create a link to the page that they are on
         let queryOptions = { active: true, lastFocusedWindow: true };
@@ -104,7 +110,7 @@
         <p class="spacer"></p>
         <input class="in quicktext" type="text" bind:this={quicktext} />
         <p class="spacer"></p>
-        <p class="create" on:click={create}>CREATE</p>
+        <p class="create" on:click={create} bind:this={buttonCreate}>CREATE</p>
     </div>
 
 </div>

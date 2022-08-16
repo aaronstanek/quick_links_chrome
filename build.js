@@ -7,6 +7,16 @@ var project = new piebuilder.Project()
 
 var pageList = fs.readdirSync(path.join('src','pages'))
 
+// remove "modular" from page list
+
+for (let i = 0; i < pageList.length; ++i) {
+    if (pageList[i] === "modular") {
+        pageList[i] = pageList[pageList.length - 1];
+        pageList.pop();
+        --i;
+    }
+}
+
 function makeDir(directory) {
     return () => {
         if (fs.existsSync(directory)) {
