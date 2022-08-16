@@ -1,10 +1,16 @@
 <script>
     'use strict';
     import { onMount } from 'svelte';
+    import {enterToPressButton} from "../../modular/enterToPressButton.js";
     export let createHandler // pass create operation upwards
     let urltext;
     let quicktext;
+    let buttonCreate;
 	onMount(async () => {
+        // when the user hits enter, we will
+        // consider it a button press of the create button
+        enterToPressButton(urltext,buttonCreate);
+        enterToPressButton(quicktext,buttonCreate);
         // if user came here from another place
         // they might be expecting to create a particular link
 		let params = new URLSearchParams(window.location.search);
@@ -34,7 +40,7 @@
     <p class="spacer"></p>
     <input class="in quicktext" type="text" bind:this={quicktext} />
     <p class="spacer"></p>
-    <p class="create" on:click={create}>CREATE</p>
+    <p class="create" on:click={create} bind:this={buttonCreate}>CREATE</p>
 </div>
 
 <style>
