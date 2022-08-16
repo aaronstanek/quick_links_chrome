@@ -10,7 +10,7 @@
     let buttonCreate;
 	onMount(async () => {
         // when the user hits enter, we will
-        // consider is a button press of the create button
+        // consider it a button press of the create button
         enterToPressButton(urltext,buttonCreate);
         enterToPressButton(quicktext,buttonCreate);
         // by default, assume that the user will

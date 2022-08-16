@@ -7,7 +7,7 @@
     let buttonImport;
 	onMount(async () => {
         // when the user hits enter, we will
-        // consider is a button press of the import button
+        // consider it a button press of the import button
         enterToPressButton(importBar,buttonImport);
 	});
     function doImport() {
