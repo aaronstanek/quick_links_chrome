@@ -44,6 +44,9 @@
 </div>
 
 <style>
+    p {
+        text-shadow: 0px 0.25px 0.25px gray;
+    }
     .row {
         display: flex;
         box-sizing: border-box;

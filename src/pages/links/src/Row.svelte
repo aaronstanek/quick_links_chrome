@@ -75,19 +75,6 @@
         }
     }
     $: show = createShow(content);
-    let rowStyle = "row";
-    function updateRowStyle(c) {
-        // set the line separator style
-        // based on if this is the first
-        // entry in the table or not
-        if (c[2] === 0) {
-            return "row";
-        }
-        else {
-            return "row rowdash";
-        }
-    }
-    $: rowStyle = updateRowStyle(content);
     function enableLocalEdit() {
         display.style.display = "none";
         edit.style.display = "flex";
@@ -119,7 +106,7 @@
     }
 </script>
 
-<div class={rowStyle} bind:this={display}>
+<div class="row" bind:this={display}>
     <p class="url left"><RedPercent text={show[0]}></RedPercent></p>
     <p class="spacer"></p>
     <p class="url right"><RedPercent text={show[1]}></RedPercent></p>
@@ -129,7 +116,7 @@
     <img class="trash" src="trash.svg" alt="delete link" on:click={processTrashClick}>
 </div>
 
-<div class={rowStyle} bind:this={edit}>
+<div class="row" bind:this={edit}>
     <input class="url left" type="text" bind:this={editQuick} />
     <p class="spacer"></p>
     <input class="url right" type="text" bind:this={editURL} />
@@ -140,17 +127,13 @@
 </div>
 
 <style>
+    p {
+        text-shadow: 0px 0.25px 0.25px gray;
+    }
     .row {
         display: flex;
         box-sizing: border-box;
-    }
-    .rowdash {
-        border-top: 1px;
-        border-left: 0;
-        border-right: 0;
-        border-bottom: 0;
-        border-style: dashed;
-        border-color: gray;
+        margin-bottom: 20px;
     }
     .left {
         flex: 10;
