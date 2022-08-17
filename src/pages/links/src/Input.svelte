@@ -62,9 +62,13 @@
     }
     .urltext {
         flex: 37;
+        border: 2px solid black;
+        box-shadow: inset 0px 1px black, inset 0px 0px 5px gray;
     }
     .quicktext {
         flex: 31;
+        border: 2px solid black;
+        box-shadow: inset 0px 1px black, inset 0px 0px 5px gray;
     }
     .spacer {
         flex: 1;
@@ -76,5 +80,6 @@
         text-align: center;
         background-color: #4dff4d;
         cursor: pointer;
+        box-shadow: 0px 1px black, 0px 0px 5px gray;
     }
 </style>
