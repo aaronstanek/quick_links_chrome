@@ -32,13 +32,13 @@
 <div class="row rowtop">
     <p class="lefttext">URL:</p>
     <p class="spacer"></p>
-    <input class="in urltext" type="text" bind:this={urltext} />
+    <input class="urltext" type="text" bind:this={urltext} />
 </div>
 
 <div class="row rowbottom">
     <p class="lefttext">Quick Link:</p>
     <p class="spacer"></p>
-    <input class="in quicktext" type="text" bind:this={quicktext} />
+    <input class="quicktext" type="text" bind:this={quicktext} />
     <p class="spacer"></p>
     <p class="create" on:click={create} bind:this={buttonCreate}>CREATE</p>
 </div>
@@ -60,19 +60,21 @@
     .lefttext {
         flex: 5;
     }
-    .in {
+    input {
         border-radius: 100px;
+        border: 2px solid black;
+        filter: drop-shadow(0px 6px 4px #989898);
+    }
+    input:focus {
+        outline:none;
     }
     .urltext {
         flex: 37;
-        border: 2px solid black;
-        box-shadow: inset 0px 1px black, inset 0px 0px 5px gray;
     }
     .quicktext {
         flex: 31;
-        border: 2px solid black;
-        box-shadow: inset 0px 1px black, inset 0px 0px 5px gray;
     }
+
     .spacer {
         flex: 1;
     }
