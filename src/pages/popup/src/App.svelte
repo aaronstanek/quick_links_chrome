@@ -95,20 +95,18 @@
     <p class="link" on:click={linkTo_help}>Help</p>
 </div>
 
-<hr class="separate">
-
 <div class="table" bind:this={table}>
 
     <div class="row rowtop">
         <p class="lefttext">URL:</p>
         <p class="spacer"></p>
-        <input class="in urltext" type="text" bind:this={urltext} />
+        <input class="urltext" type="text" bind:this={urltext} />
     </div>
 
     <div class="row">
         <p class="lefttext">Quick Link:</p>
         <p class="spacer"></p>
-        <input class="in quicktext" type="text" bind:this={quicktext} />
+        <input class="quicktext" type="text" bind:this={quicktext} />
         <p class="spacer"></p>
         <p class="create" on:click={create} bind:this={buttonCreate}>CREATE</p>
     </div>
@@ -122,6 +120,15 @@
 <style>
     p {
         font-size: 12px;
+        filter: drop-shadow(0px 6px 4px #989898);
+    }
+    input {
+        border-radius: 100px;
+        border: 2px solid black;
+        filter: drop-shadow(0px 6px 4px #989898);
+    }
+    input:focus {
+        outline:none;
     }
     .table {
         display: flex;
@@ -138,9 +145,6 @@
     }
     .lefttext {
         flex: 5;
-    }
-    .in {
-        border-radius: 100px;
     }
     .urltext {
         flex: 37;
@@ -164,14 +168,6 @@
         display: none;
         width: 510px;
         margin: 30px;
-    }
-    .separate {
-        width: 80%;
-        border-top: 3px solid gray;
-        border-bottom: 15px;
-        border-left: 0px;
-        border-right: 0px;
-        margin-top: 15px;
     }
     .linksArea {
         text-align: center;
