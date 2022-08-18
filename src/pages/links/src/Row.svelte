@@ -3,7 +3,7 @@
     import { onMount } from 'svelte';
     import RedPercent from "./RedPercent.svelte";
     import {enterToPressButton} from "../../modular/enterToPressButton.js";
-    export let content; // [key,linkTable[key],i]
+    export let content; // [key,linkTable[key]]
     export let trash; // pass delete operation upwards
     export let pushDisableEdit; // pass editing disable upwards
     export let editLink;
