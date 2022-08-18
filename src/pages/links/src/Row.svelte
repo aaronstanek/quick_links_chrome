@@ -164,6 +164,6 @@
         cursor: pointer;
     }
     input {
-        box-shadow: inset 0px 1px black, inset 0px 0px 5px gray;
+        filter: drop-shadow(0px 6px 4px #989898);
     }
 </style>
