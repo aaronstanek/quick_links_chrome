@@ -52,10 +52,11 @@
         box-sizing: border-box;
     }
     .rowtop {
-        margin-bottom: 25px;
+        margin-top: 10px;
+        margin-bottom: 40px;
     }
     .rowbottom {
-        margin-bottom: 50px;
+        margin-bottom: 80px;
     }
     .lefttext {
         flex: 5;
