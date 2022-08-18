@@ -57,8 +57,15 @@
     .spacer {
         flex: 1;
     }
-    .in {
+    input {
         border-radius: 100px;
+        border: 2px solid black;
+        filter: drop-shadow(0px 6px 4px #989898);
+    }
+    input:focus {
+        outline:none;
+    }
+    .in {
         flex: 31;
     }
     .import {
@@ -68,5 +75,6 @@
         text-align: center;
         background-color: #4dff4d;
         cursor: pointer;
+        filter: drop-shadow(0px 6px 4px #989898);
     }
 </style>
