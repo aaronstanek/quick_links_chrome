@@ -130,6 +130,9 @@
     p {
         text-shadow: 0px 0.25px 0.25px gray;
     }
+    img {
+        filter: drop-shadow(0px 4px 4px gray);
+    }
     .row {
         display: flex;
         box-sizing: border-box;
