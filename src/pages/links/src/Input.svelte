@@ -45,7 +45,7 @@
 
 <style>
     p {
-        text-shadow: 0px 0.25px 0.25px gray;
+        filter: drop-shadow(0px 6px 4px #989898);
     }
     .row {
         display: flex;
