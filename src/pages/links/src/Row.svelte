@@ -128,6 +128,7 @@
 
 <style>
     p {
+        margin: 0;
         filter: drop-shadow(0px 6px 4px #989898);
     }
     img {
@@ -136,7 +137,7 @@
     .row {
         display: flex;
         box-sizing: border-box;
-        margin-bottom: 20px;
+        margin-bottom: 50px;
     }
     .left {
         flex: 10;
