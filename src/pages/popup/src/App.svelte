@@ -135,13 +135,15 @@
         flex-direction: column;
         width: 510px;
         margin: 30px;
+        margin-bottom: 35px;
     }
     .row {
         display: flex;
         box-sizing: border-box;
     }
     .rowtop {
-        margin-bottom: 25px;
+        margin-top: 10px;
+        margin-bottom: 35px;
     }
     .lefttext {
         flex: 5;
@@ -173,7 +175,8 @@
         text-align: center;
         display: flex;
         margin-left: auto;
-        margin-right: auto; 
+        margin-right: auto;
+        margin-top: 30px;
     }
     .link {
         flex: 1;
