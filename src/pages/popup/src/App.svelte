@@ -98,13 +98,13 @@
 <div class="table" bind:this={table}>
 
     <div class="row rowtop">
-        <p class="lefttext">URL:</p>
+        <p class="lefttext shadowtext">URL:</p>
         <p class="spacer"></p>
         <input class="urltext" type="text" bind:this={urltext} />
     </div>
 
     <div class="row">
-        <p class="lefttext">Quick Link:</p>
+        <p class="lefttext shadowtext">Quick Link:</p>
         <p class="spacer"></p>
         <input class="quicktext" type="text" bind:this={quicktext} />
         <p class="spacer"></p>
@@ -113,13 +113,15 @@
 
 </div>
 
-<div class="wintext" bind:this={wintext}>
+<div class="wintext shadowtext" bind:this={wintext}>
     <p>Your link was successfully created!</p>
 </div>
 
 <style>
     p {
         font-size: 12px;
+    }
+    .shadowtext {
         filter: drop-shadow(0px 6px 4px #989898);
     }
     input {
@@ -164,6 +166,7 @@
         text-align: center;
         background-color: #4dff4d;
         cursor: pointer;
+        filter: drop-shadow(0px 6px 4px #989898);
     }
     .wintext {
         text-align: center;
