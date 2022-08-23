@@ -1,4 +1,4 @@
-# quick_links_chrome
+# Quick Links
 
 *Never bookmark a webpage again!*
 
