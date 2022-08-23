@@ -62,7 +62,7 @@ function linkTableLookup(linkTable,s) {
         return tabRedirect("error/index.html?code=8");
     }
     if (sections[0] === "help") {
-        return tabRedirect("https://github.com/aaronstanek/quick_links_chrome");
+        return tabRedirect("https://aaronstanek.github.io/quick-links-docs/");
     }
     else if (sections[0] === "links") {
         if (sections.length === 1) {
@@ -73,7 +73,7 @@ function linkTableLookup(linkTable,s) {
             return tabRedirect("links/index.html?create="+encodeURIComponent(newQuick));
         }
         else if (sections[1] === "help") {
-            return tabRedirect("https://github.com/aaronstanek/quick_links_chrome");
+            return tabRedirect("https://aaronstanek.github.io/quick-links-docs/");
         }
         else if (sections[1] === "export") {
             return tabRedirect("export/index.html");

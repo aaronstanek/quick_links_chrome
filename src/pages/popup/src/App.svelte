@@ -84,7 +84,7 @@
         chrome.tabs.create({ url: "import/index.html" });
     }
     function linkTo_help() {
-        chrome.tabs.create({ url: "https://github.com/aaronstanek/quick_links_chrome" });
+        chrome.tabs.create({ url: "https://aaronstanek.github.io/quick-links-docs/" });
     }
 </script>
 
