@@ -6,7 +6,7 @@ The Quick Links browser extension allows you to rapidly revisit webpages without
 
 All you have to do is come up with a memorable name for a webpage you want to visit again, then later type that name into your URL bar to zip back to that page!
 
-Let's say that you need to reference a periodic table for your work. It's easy enough to Google "periodic table" and find what you're looking for, but if you need to access the periodic table frequency, you'd certainly want a faster way to return to the webpage than going through the Google search results every time. A bookmark would certainly accomplish this, but then you'd still need to go find the bookmark and click on it. If you have enough bookmarks, then this search through your bookmarks bar could potentially take just as long as the Google search would have taken!
+Let's say that you need to reference a periodic table for your work. It's easy enough to Google "periodic table" and find what you're looking for, but if you need to access the periodic table frequently, you'd certainly want a faster way to return to the webpage than going through the Google search results every time. A bookmark would certainly accomplish this, but then you'd still need to go find the bookmark and click on it. If you have enough bookmarks, then this search through your bookmarks bar could potentially take just as long as the Google search would have taken!
 
 With Quick Links, you could easily associate the keyword "periodic" with the periodic table reference webpage. Then returning to the webpage is as easy as typing "go periodic" into your URL bar and hitting the enter key. Faster and easier than using a bookmark!
 
